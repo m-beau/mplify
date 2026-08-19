@@ -232,13 +232,25 @@ def mplp(fig=None,
 
     # Tick labels
     fig.canvas.draw()  # force tick label generation
+
+    # Check if axes use scientific notation (offset text like "1e6").
+    # When they do, we style tick labels in-place to preserve the formatter
+    # and offset text, rather than calling set_x/yticklabels which replaces
+    # the formatter with FixedFormatter and destroys the offset.
+    x_has_offset = bool(ax.xaxis.get_offset_text().get_text())
+    y_has_offset = bool(ax.yaxis.get_offset_text().get_text())
+
     if xtickslabels is None and prettify and any(ax.get_xticklabels()):
-        if _isnumeric(ax.get_xticklabels()[0].get_text()):
+        if x_has_offset:
+            pass  # keep formatter intact, style below
+        elif _isnumeric(ax.get_xticklabels()[0].get_text()):
             xtickslabels, _ = get_labels_from_ticks(xticks)
         else:
             xtickslabels = ax.get_xticklabels()
     if ytickslabels is None and prettify and any(ax.get_yticklabels()):
-        if _isnumeric(ax.get_yticklabels()[0].get_text()):
+        if y_has_offset:
+            pass  # keep formatter intact, style below
+        elif _isnumeric(ax.get_yticklabels()[0].get_text()):
             ytickslabels, _ = get_labels_from_ticks(yticks)
         else:
             ytickslabels = ax.get_yticklabels()
@@ -264,6 +276,25 @@ def mplp(fig=None,
                            color=(0, 0, 0), rotation=ytickrot,
                            ha=ytickha, va=ytickva, **hfont)
 
+    # When scientific notation is active, style tick labels in-place
+    # (without replacing the formatter) and style the offset text to match
+    for axis, has_offset, rot, ha, va in [
+        (ax.xaxis, x_has_offset, xtickrot, xtickha, xtickva),
+        (ax.yaxis, y_has_offset, ytickrot, ytickha, ytickva),
+    ]:
+        if has_offset and prettify:
+            for label in axis.get_ticklabels():
+                if ticklab_s is not None: label.set_fontsize(ticklab_s)
+                if ticklab_w is not None: label.set_fontweight(ticklab_w)
+                if font_family is not None: label.set_fontfamily(font_family)
+                label.set_color((0, 0, 0))
+                if rot is not None: label.set_rotation(rot)
+                if ha is not None: label.set_ha(ha)
+                if va is not None: label.set_va(va)
+            offset = axis.get_offset_text()
+            if ticklab_s is not None: offset.set_fontsize(ticklab_s)
+            if font_family is not None: offset.set_fontfamily(font_family)
+
     # Reset limits (ticks may have shifted them)
     if xlim is not None: ax.set_xlim(xlim)
     if ylim is not None: ax.set_ylim(ylim)
@@ -279,18 +310,20 @@ def mplp(fig=None,
     elif lw is not None or ticks_direction is not None:
         ax.tick_params(axis='both', width=lw, direction=ticks_direction)
 
-    if hide_top_right is not None:
-        spine_keys = list(ax.spines.keys())
-        hide_spine_keys = ['polar'] if 'polar' in spine_keys else ['top', 'right']
+    spine_keys = list(ax.spines.keys())
+    if lw is not None:
         lw_spine_keys = ['polar'] if 'polar' in spine_keys else ['left', 'bottom', 'top', 'right']
+        for sp in lw_spine_keys:
+            ax.spines[sp].set_lw(lw)
+
+    if hide_top_right is not None:
+        hide_spine_keys = ['polar'] if 'polar' in spine_keys else ['top', 'right']
         if hide_top_right and 'top' in hide_spine_keys:
             for sp in hide_spine_keys:
                 ax.spines[sp].set_visible(False)
         else:
             for sp in hide_spine_keys:
                 ax.spines[sp].set_visible(True)
-        for sp in lw_spine_keys:
-            ax.spines[sp].set_lw(lw)
 
     # Background transparency
     if transparent_background is not None:
