@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
 from mplp._colors import get_bounded_cmap
-from mplp._ticks import get_bestticks
+from mplp._ticks import get_bestticks, get_labels_from_ticks
 from mplp._utils import set_ax_size
 
 
@@ -78,7 +78,7 @@ def add_colorbar(fig, ax, mappable=None, vmin=None, vmax=None,
 
     # Format ticks and labels
     if ctickslabels is None:
-        ctickslabels = cticks
+        ctickslabels, _ = get_labels_from_ticks(cticks)
     elif len(ctickslabels) != len(cticks):
         raise ValueError(
             f"ctickslabels length ({len(ctickslabels)}) must match "
