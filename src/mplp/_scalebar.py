@@ -62,7 +62,7 @@ def plot_scalebar(ax, xscalebar=None, yscalebar=None,
         xscale_y = [y + offset_y for y in xscale_y]
 
         ax.plot(xscale_x, xscale_y, c='k', lw=lw)
-        ax.text(xscale_x[0] + np.diff(xscale_x) / 2,
+        ax.text(xscale_x[0] + np.diff(xscale_x)[0] / 2,
                 xscale_y[0] + vpad * text_pos_sign,
                 f"{xscalebar}{x_unit}",
                 ha="center", va=xscale_va, fontsize=fontsize)
@@ -94,6 +94,6 @@ def plot_scalebar(ax, xscalebar=None, yscalebar=None,
 
         ax.plot(yscale_x, yscale_y, c='k', lw=lw)
         ax.text(yscale_x[0] + hpad * text_pos_sign,
-                yscale_y[0] + np.diff(yscale_y) / 2,
+                yscale_y[0] + np.diff(yscale_y)[0] / 2,
                 f"{yscalebar}{y_unit}",
                 ha=yscale_ha, va="center", fontsize=fontsize)
