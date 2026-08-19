@@ -10,7 +10,7 @@ from matplotlib.ticker import AutoLocator
 from pathlib import Path
 
 from mplp._defaults import default_mplp_params
-from mplp._utils import _isnumeric, _pprint_dic, _docstring_decorator, set_ax_size
+from mplp._utils import _isnumeric, _pprint_dic, _docstring_decorator
 from mplp._ticks import get_labels_from_ticks
 from mplp._colorbar import add_colorbar
 from mplp._scalebar import plot_scalebar
@@ -192,14 +192,21 @@ def mplp(fig=None,
     hfont = {'fontname': font_family}
 
     # Figure / axis size
-    if figsize is not None and axsize is not None:
-        raise ValueError(
-            "Cannot set both figsize and axsize — axsize is derived from figsize.")
     if figsize is not None:
         fig.set_figwidth(figsize[0])
         fig.set_figheight(figsize[1])
     if axsize is not None:
-        set_ax_size(ax, *axsize)
+        # Reposition this axis within the existing figure
+        # without resizing the figure or affecting other axes
+        fig_w, fig_h = fig.get_size_inches()
+        frac_w = axsize[0] / fig_w
+        frac_h = axsize[1] / fig_h
+        cur_pos = ax.get_position()
+        cx = (cur_pos.x0 + cur_pos.x1) / 2
+        cy = (cur_pos.y0 + cur_pos.y1) / 2
+        new_x0 = max(0, min(cx - frac_w / 2, 1 - frac_w))
+        new_y0 = max(0, min(cy - frac_h / 2, 1 - frac_h))
+        ax.set_position([new_x0, new_y0, frac_w, frac_h])
 
     # Hide/show axis
     if hide_axis is not None:
