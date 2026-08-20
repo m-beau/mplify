@@ -93,3 +93,112 @@ default_mplp_params = dict(
         'offset_y': 0,
     },
 )
+
+###########################################################################
+###########################################################################
+###########################################################################
+
+"""Size presets for mplp().
+
+The base defaults in `_defaults.py` (title/axis/tick font sizes, spine and
+tick line widths, colorbar and scalebar text/line sizes) are tuned for
+on-screen slides. That's too small to read on a poster from a few meters
+away, and too large for a paper figure that will be printed at a few inches
+wide and read up close.
+
+Each preset here scales only the "meta-plotting" elements that need to grow
+or shrink with the viewing distance/medium — font sizes and line widths —
+so a plot keeps the same proportions, just legible wherever it ends up.
+Data-plotting choices (colors, markers, line styles, positions, ...) are
+untouched.
+
+Use via mplp(size='poster'), or import SIZE_PRESETS directly to inspect/tweak.
+"""
+
+SIZE_PRESETS = {
+
+    # xs: extra small — dense multi-panel figures, small insets, thumbnails
+    'xs': dict(
+        title_s=14,
+        axlab_s=13,
+        ticklab_s=11,
+        lw=0.7,
+        cbar_w=0.02,    # colorbar thickness scales with lw, else it reads as
+                        # a hairline next to xs text and a starved sliver next to xxl text
+        clabel_s=13,
+        cticks_s=11,
+        lines_kwargs={'lw': 1},
+        scalebarkwargs={'fontsize': 10, 'lw': 2},
+    ),
+
+    # s: small — paper figures, printed at a few inches wide and read up close
+    's': dict(
+        title_s=17,
+        axlab_s=15,
+        ticklab_s=14,
+        lw=0.85,
+        cbar_w=0.025,
+        clabel_s=15,
+        cticks_s=14,
+        lines_kwargs={'lw': 1.3},
+        scalebarkwargs={'fontsize': 12, 'lw': 2.5},
+    ),
+
+    # m: medium — slides, general on-screen work (mplify's original defaults)
+    'm': dict(
+        title_s=20,
+        axlab_s=18,
+        ticklab_s=16,
+        lw=1,
+        cbar_w=0.03,
+        clabel_s=18,
+        cticks_s=16,
+        lines_kwargs={'lw': 1.5},
+        scalebarkwargs={'fontsize': 14, 'lw': 3},
+    ),
+
+    # l: large — posters, read from about a meter away
+    'l': dict(
+        title_s=26,
+        axlab_s=23,
+        ticklab_s=21,
+        lw=1.3,
+        cbar_w=0.04,
+        clabel_s=23,
+        cticks_s=21,
+        lines_kwargs={'lw': 2},
+        scalebarkwargs={'fontsize': 18, 'lw': 4},
+    ),
+
+    # xl: extra large — posters/banners read from several meters away
+    'xl': dict(
+        title_s=32,
+        axlab_s=29,
+        ticklab_s=26,
+        lw=1.6,
+        cbar_w=0.05,
+        clabel_s=29,
+        cticks_s=26,
+        lines_kwargs={'lw': 2.4},
+        scalebarkwargs={'fontsize': 22, 'lw': 5},
+    ),
+
+    # xxl: banner-sized — huge posters/wall displays read from far across a room
+    'xxl': dict(
+        title_s=38,
+        axlab_s=34,
+        ticklab_s=30,
+        lw=1.9,
+        cbar_w=0.06,
+        clabel_s=34,
+        cticks_s=30,
+        lines_kwargs={'lw': 2.9},
+        scalebarkwargs={'fontsize': 27, 'lw': 6},
+    ),
+}
+
+# Semantic aliases, so you can call mplp(size='paper') instead of remembering
+# which letter size maps to which output medium.
+SIZE_PRESETS['paper'] = SIZE_PRESETS['s']    # small text, printed close-up
+SIZE_PRESETS['slide'] = SIZE_PRESETS['m']    # mplify's original defaults
+SIZE_PRESETS['poster'] = SIZE_PRESETS['l']   # large text, read from afar

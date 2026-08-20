@@ -6,7 +6,6 @@ from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
 from mplify._colors import get_bounded_cmap
 from mplify._ticks import get_bestticks, get_labels_from_ticks
-from mplify._utils import set_ax_size
 
 
 def add_colorbar(fig, ax, mappable=None, vmin=None, vmax=None,
@@ -95,8 +94,5 @@ def add_colorbar(fig, ax, mappable=None, vmin=None, vmax=None,
     cbar_ax.yaxis.set_ticklabels(ctickslabels, ha='left')
     cbar_ax.yaxis.set_tick_params(pad=5, labelsize=cticks_s)
     cbar_ax.set_ylim(clim)
-
-    fig.canvas.draw()
-    set_ax_size(ax, *fig.get_size_inches())
 
     return fig

@@ -1,6 +1,6 @@
 """mplify: MatPlotLib you will Prettify"""
 
-from mplify._defaults import default_mplp_params
+from mplify._defaults import default_mplp_params, SIZE_PRESETS
 from mplify._core import mplp, save_mpl_fig
 from mplify._utils import set_ax_size
 from mplify._ticks import (
@@ -26,6 +26,7 @@ __all__ = [
     # Core
     "mplp",
     "default_mplp_params",
+    "SIZE_PRESETS",
 
     # Save / size
     "save_mpl_fig",

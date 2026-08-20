@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import AutoLocator
 from pathlib import Path
 
-from mplify._defaults import default_mplp_params
+from mplify._defaults import default_mplp_params, SIZE_PRESETS
 from mplify._utils import _isnumeric, _pprint_dic, _docstring_decorator
 from mplify._ticks import get_labels_from_ticks
 from mplify._colorbar import add_colorbar
@@ -21,6 +21,7 @@ def mplp(fig=None,
          ax=None,
          figsize=None,
          axsize=None,
+         size=None,
 
          xlim=None,
          ylim=None,
@@ -120,11 +121,30 @@ def mplp(fig=None,
     How it works: grabs the currently active figure and axis (plt.gcf() and plt.gca()).
     Alternatively, pass a matplotlib figure and specific axes as arguments.
 
+    size: scales font sizes, spine/tick line widths and colorbar thickness to fit the
+        output medium, without touching data-plotting choices. One of (see
+        mplify._defaults.SIZE_PRESETS): 'xs', 's', 'm' (default), 'l', 'xl', 'xxl',
+        or the aliases 'paper' (-> 's'), 'slide' (-> 'm'), 'poster' (-> 'l').
+        Any of title_s, axlab_s, ticklab_s, lw, cbar_w, clabel_s, cticks_s,
+        lines_kwargs['lw'] and scalebarkwargs['fontsize'/'lw'] passed explicitly
+        still take precedence.
+
     Default Arguments:
         {0}
     """
 
     d = default_mplp_params
+    if size is not None:
+        if size not in SIZE_PRESETS:
+            raise ValueError(
+                f"Unknown size {size!r}. Choose from {list(SIZE_PRESETS)}.")
+        preset = SIZE_PRESETS[size]
+        d = {**d, **{k: v for k, v in preset.items()
+                     if k not in ('lines_kwargs', 'scalebarkwargs')}}
+        d['lines_kwargs'] = {**default_mplp_params['lines_kwargs'],
+                             **preset.get('lines_kwargs', {})}
+        d['scalebarkwargs'] = {**default_mplp_params['scalebarkwargs'],
+                               **preset.get('scalebarkwargs', {})}
 
     if fig is None:
         fig = plt.gcf() if ax is None else ax.get_figure()
