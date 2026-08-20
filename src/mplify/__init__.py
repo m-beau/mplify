@@ -1,15 +1,15 @@
-"""mplp: MatPlotLib Prettifier (Make PLots Pretty)"""
+"""mplify: MatPlotLib you will Prettify"""
 
-from mplp._defaults import default_mplp_params
-from mplp._core import mplp, save_mpl_fig
-from mplp._utils import set_ax_size
-from mplp._ticks import (
+from mplify._defaults import default_mplp_params
+from mplify._core import mplp, save_mpl_fig
+from mplify._utils import set_ax_size
+from mplify._ticks import (
     get_bestticks,
     get_bestticks_from_array,
     get_labels_from_ticks,
     sci_notation,
 )
-from mplp._colors import (
+from mplify._colors import (
     to_rgb,
     to_hex,
     to_hsv,
@@ -19,8 +19,8 @@ from mplp._colors import (
     get_color_families,
     html_palette,
 )
-from mplp._colorbar import add_colorbar
-from mplp._scalebar import plot_scalebar
+from mplify._colorbar import add_colorbar
+from mplify._scalebar import plot_scalebar
 
 __all__ = [
     # Core

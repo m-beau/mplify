@@ -9,11 +9,11 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import AutoLocator
 from pathlib import Path
 
-from mplp._defaults import default_mplp_params
-from mplp._utils import _isnumeric, _pprint_dic, _docstring_decorator
-from mplp._ticks import get_labels_from_ticks
-from mplp._colorbar import add_colorbar
-from mplp._scalebar import plot_scalebar
+from mplify._defaults import default_mplp_params
+from mplify._utils import _isnumeric, _pprint_dic, _docstring_decorator
+from mplify._ticks import get_labels_from_ticks
+from mplify._colorbar import add_colorbar
+from mplify._scalebar import plot_scalebar
 
 
 @_docstring_decorator(_pprint_dic(default_mplp_params))

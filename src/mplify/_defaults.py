@@ -1,4 +1,4 @@
-"""Default parameters for mplp and font detection."""
+"""Default parameters for mplify and font detection."""
 
 import matplotlib as mpl
 import matplotlib.font_manager as fm

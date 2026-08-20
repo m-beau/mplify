@@ -1,4 +1,4 @@
-"""Internal utilities for mplp."""
+"""Internal utilities for mplify."""
 
 from ast import literal_eval as _ale
 

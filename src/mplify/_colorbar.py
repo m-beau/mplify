@@ -4,9 +4,9 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
-from mplp._colors import get_bounded_cmap
-from mplp._ticks import get_bestticks, get_labels_from_ticks
-from mplp._utils import set_ax_size
+from mplify._colors import get_bounded_cmap
+from mplify._ticks import get_bestticks, get_labels_from_ticks
+from mplify._utils import set_ax_size
 
 
 def add_colorbar(fig, ax, mappable=None, vmin=None, vmax=None,
