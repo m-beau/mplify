@@ -17,7 +17,10 @@ def _ceil_power10(x):
 
 
 def _n_decimals(x):
-    return len(str(x).split('.')[1])
+    x_str = str(x)
+    if '.' not in x_str:
+        return 0
+    return len(x_str.split('.')[1])
 
 
 def get_bestticks(start, end, step=None, light=False):

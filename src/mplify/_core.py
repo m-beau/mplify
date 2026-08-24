@@ -11,7 +11,7 @@ from pathlib import Path
 
 from mplify._defaults import default_mplp_params, SIZE_PRESETS
 from mplify._utils import _isnumeric, _pprint_dic, _docstring_decorator
-from mplify._ticks import get_labels_from_ticks
+from mplify._ticks import get_labels_from_ticks, get_bestticks
 from mplify._colorbar import add_colorbar
 from mplify._scalebar import plot_scalebar
 
@@ -22,6 +22,7 @@ def mplp(fig=None,
          figsize=None,
          axsize=None,
          size=None,
+         adjust_ticks_from_size=True,
 
          xlim=None,
          ylim=None,
@@ -129,16 +130,30 @@ def mplp(fig=None,
         lines_kwargs['lw'] and scalebarkwargs['fontsize'/'lw'] passed explicitly
         still take precedence.
 
+    adjust_ticks_from_size: if True (default) and size is set, x/y ticks that
+        weren't explicitly passed via xticks/yticks (and colorbar ticks not
+        passed via cticks) are recomputed with mplify's smart tick spacing
+        (get_bestticks) instead of matplotlib's own locator / add_colorbar's
+        own default, sparsened further ('xl'/'xxl') so tick labels don't crowd
+        each other at those sizes. Ignored when size is None. Set to False to
+        always keep matplotlib's/add_colorbar's own tick placement regardless
+        of size.
+
     Default Arguments:
         {0}
     """
 
     d = default_mplp_params
+    # 'xl'/'xxl' get sparser auto-ticks than the rest (see Tick values below);
+    # compared by identity so aliases (e.g. size='poster' -> SIZE_PRESETS['l'])
+    # resolve correctly without string-matching alias names.
+    size_is_sparse = False
     if size is not None:
         if size not in SIZE_PRESETS:
             raise ValueError(
                 f"Unknown size {size!r}. Choose from {list(SIZE_PRESETS)}.")
         preset = SIZE_PRESETS[size]
+        size_is_sparse = preset is SIZE_PRESETS['xl'] or preset is SIZE_PRESETS['xxl']
         d = {**d, **{k: v for k, v in preset.items()
                      if k not in ('lines_kwargs', 'scalebarkwargs')}}
         d['lines_kwargs'] = {**default_mplp_params['lines_kwargs'],
@@ -245,16 +260,36 @@ def mplp(fig=None,
     if ylim is not None: ax.set_ylim(ylim)
 
     # Tick values
+    # When size is set (and adjust_ticks_from_size=True), ticks the user didn't
+    # pass explicitly are recomputed with get_bestticks instead of matplotlib's
+    # own locator, so they land on the same nice round spacing as e.g. colorbar
+    # ticks — sparser still for 'xl'/'xxl', where big tick labels need more room.
+    adjust_ticks = prettify and size is not None and adjust_ticks_from_size
+
     if prettify and xticks is None:
         if reset_xticks:
             ax.xaxis.set_major_locator(AutoLocator())
         xticks = ax.get_xticks()
+        if adjust_ticks:
+            x0, x1 = ax.get_xlim()
+            if x0 != x1:
+                try:
+                    xticks = get_bestticks(x0, x1, light=size_is_sparse)
+                except ValueError:
+                    pass  # degenerate span: keep matplotlib's own ticks
     if xticks is not None: ax.set_xticks(xticks)
 
     if prettify and yticks is None:
         if reset_yticks:
             ax.yaxis.set_major_locator(AutoLocator())
         yticks = ax.get_yticks()
+        if adjust_ticks:
+            y0, y1 = ax.get_ylim()
+            if y0 != y1:
+                try:
+                    yticks = get_bestticks(y0, y1, light=size_is_sparse)
+                except ValueError:
+                    pass
     if yticks is not None: ax.set_yticks(yticks)
 
     # Tick labels
@@ -394,6 +429,20 @@ def mplp(fig=None,
         if vmin is None or vmax is None or cmap is None:
             raise ValueError(
                 "colorbar=True requires vmin, vmax, and cmap.")
+        # add_colorbar's own default (get_bestticks(..., light=True)) already
+        # suits xs/s/m/l — leave cticks alone for those so behavior there is
+        # unchanged. 'xl'/'xxl' need sparser still (the colorbar's vertical
+        # space doesn't grow with font size), so thin that same default out
+        # one more notch by doubling its step again. Only kicks in when the
+        # caller hasn't set cticks themselves.
+        if cticks is None and adjust_ticks and size_is_sparse and vmin < vmax:
+            try:
+                medium = get_bestticks(vmin, vmax, light=True)
+                if len(medium) >= 2:
+                    step = float(medium[1] - medium[0])
+                    cticks = get_bestticks(vmin, vmax, step=step, light=True)
+            except ValueError:
+                pass  # degenerate range: let add_colorbar apply its own default
         cb_kwargs = dict(vmin=vmin, vmax=vmax, cmap=cmap)
         for k, v in [('width', cbar_w), ('height', cbar_h),
                       ('center', center),
