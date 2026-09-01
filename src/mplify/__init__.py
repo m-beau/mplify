@@ -1,6 +1,8 @@
 """mplify: MatPlotLib you will Prettify"""
 
-from mplify._defaults import default_mplp_params, SIZE_PRESETS
+# Snapshots for inspection at import time — mplp() itself always re-reads
+# _params.py fresh on every call, so edits there apply without re-importing.
+from mplify._params import default_mplp_params, SIZE_PRESETS
 from mplify._core import mplp, save_mpl_fig
 from mplify._utils import set_ax_size
 from mplify._ticks import (

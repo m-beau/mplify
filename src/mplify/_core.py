@@ -4,19 +4,46 @@ mplp: MatPlotLib Prettifier (Make PLots Pretty)
 Core module containing the mplp() function.
 """
 
+import importlib
+import warnings
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 from matplotlib.ticker import AutoLocator
 from pathlib import Path
 
-from mplify._defaults import default_mplp_params, SIZE_PRESETS
+import mplify._params as _params
 from mplify._utils import _isnumeric, _pprint_dic, _docstring_decorator
 from mplify._ticks import get_labels_from_ticks, get_bestticks
 from mplify._colorbar import add_colorbar
 from mplify._scalebar import plot_scalebar
 
+_params_path = Path(_params.__file__)
+_params_mtime = _params_path.stat().st_mtime
 
-@_docstring_decorator(_pprint_dic(default_mplp_params))
+
+def _live_params():
+    """Return (default_mplp_params, SIZE_PRESETS), re-reading _params.py from
+    disk when it changed since the last call. This is what lets edits to
+    mplify's defaults take effect on your very next mplp() call, whether or
+    not IPython's %autoreload is enabled.
+    """
+    global _params_mtime
+    try:
+        mtime = _params_path.stat().st_mtime
+    except OSError:
+        return _params.default_mplp_params, _params.SIZE_PRESETS
+    if mtime != _params_mtime:
+        try:
+            importlib.reload(_params)
+            _params_mtime = mtime
+        except Exception as e:
+            warnings.warn(
+                f"mplify: failed to reload _params.py ({e}); "
+                "using the previous defaults until it's fixed.")
+    return _params.default_mplp_params, _params.SIZE_PRESETS
+
+
+@_docstring_decorator(_pprint_dic(_params.default_mplp_params))
 def mplp(fig=None,
          ax=None,
          figsize=None,
@@ -124,8 +151,9 @@ def mplp(fig=None,
 
     size: scales font sizes, spine/tick line widths and colorbar thickness to fit the
         output medium, without touching data-plotting choices. One of (see
-        mplify._defaults.SIZE_PRESETS): 'xs', 's', 'm' (default), 'l', 'xl', 'xxl',
-        or the aliases 'paper' (-> 's'), 'slide' (-> 'm'), 'poster' (-> 'l').
+        mplify._params.SIZE_PRESETS — edit that file to change these defaults):
+        'xs', 's', 'm' (default), 'l', 'xl', 'xxl', or the aliases
+        'paper' (-> 's'), 'slide' (-> 'm'), 'poster' (-> 'l').
         Any of title_s, axlab_s, ticklab_s, lw, cbar_w, clabel_s, cticks_s,
         lines_kwargs['lw'] and scalebarkwargs['fontsize'/'lw'] passed explicitly
         still take precedence.
@@ -143,6 +171,7 @@ def mplp(fig=None,
         {0}
     """
 
+    default_mplp_params, SIZE_PRESETS = _live_params()
     d = default_mplp_params
     # 'xl'/'xxl' get sparser auto-ticks than the rest (see Tick values below);
     # compared by identity so aliases (e.g. size='poster' -> SIZE_PRESETS['l'])
