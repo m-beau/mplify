@@ -1,4 +1,4 @@
-"""mplify: MatPlotLib you will Prettify"""
+"""mplify: MatPlotLib prettifier"""
 
 # Snapshots for inspection at import time — mplp() itself always re-reads
 # DEFAULT_PARAMS.py fresh on every call, so edits there apply without re-importing.
