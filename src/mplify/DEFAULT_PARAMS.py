@@ -48,6 +48,8 @@ default_mplp_params = dict(
     hide_top_right=True,
     hide_axis=False,
     tight_layout=False,
+    align_x_labels=True,
+    align_y_labels=True,
 
     # legend
     show_legend=False,

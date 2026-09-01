@@ -120,6 +120,8 @@ def mplp(fig=None,
          vlines=None,
          lines_kwargs=None,
          prettify=True,
+         align_x_labels=None,
+         align_y_labels=None,
 
          xscalebar=None,
          yscalebar=None,
@@ -166,6 +168,12 @@ def mplp(fig=None,
         each other at those sizes. Ignored when size is None. Set to False to
         always keep matplotlib's/add_colorbar's own tick placement regardless
         of size.
+
+    align_x_labels / align_y_labels: if True (default) and prettify=True, call
+        fig.align_xlabels / fig.align_ylabels so shared axis labels line up
+        across subplots. Set to False to leave each label at its own position,
+        e.g. when repositioning a single axis with axsize (aligning would pull
+        its label towards the un-resized sibling subplots).
 
     Default Arguments:
         {0}
@@ -228,6 +236,8 @@ def mplp(fig=None,
         if hide_top_right is None: hide_top_right = d['hide_top_right']
         if hide_axis is None: hide_axis = d['hide_axis']
         if tight_layout is None: tight_layout = d['tight_layout']
+        if align_x_labels is None: align_x_labels = d['align_x_labels']
+        if align_y_labels is None: align_y_labels = d['align_y_labels']
         if show_legend is None: show_legend = d['show_legend']
         if hide_legend is None: hide_legend = d['hide_legend']
         if legend_loc is None: legend_loc = d['legend_loc']
@@ -438,8 +448,10 @@ def mplp(fig=None,
     if hspace is not None: fig.subplots_adjust(hspace=hspace)
     if wspace is not None: fig.subplots_adjust(wspace=wspace)
     if prettify:
-        fig.align_ylabels(fig.axes)
-        fig.align_xlabels(fig.axes)
+        if align_y_labels:
+            fig.align_ylabels(fig.axes)
+        if align_x_labels:
+            fig.align_xlabels(fig.axes)
 
     # Legend
     if show_legend and hide_legend:
