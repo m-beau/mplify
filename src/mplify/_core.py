@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import AutoLocator
 from pathlib import Path
 
-import mplify._params as _params
+import mplify.DEFAULT_PARAMS as _params
 from mplify._utils import _isnumeric, _pprint_dic, _docstring_decorator
 from mplify._ticks import get_labels_from_ticks, get_bestticks
 from mplify._colorbar import add_colorbar
@@ -22,8 +22,8 @@ _params_mtime = _params_path.stat().st_mtime
 
 
 def _live_params():
-    """Return (default_mplp_params, SIZE_PRESETS), re-reading _params.py from
-    disk when it changed since the last call. This is what lets edits to
+    """Return (default_mplp_params, SIZE_PRESETS), re-reading DEFAULT_PARAMS.py
+    from disk when it changed since the last call. This is what lets edits to
     mplify's defaults take effect on your very next mplp() call, whether or
     not IPython's %autoreload is enabled.
     """
@@ -38,7 +38,7 @@ def _live_params():
             _params_mtime = mtime
         except Exception as e:
             warnings.warn(
-                f"mplify: failed to reload _params.py ({e}); "
+                f"mplify: failed to reload DEFAULT_PARAMS.py ({e}); "
                 "using the previous defaults until it's fixed.")
     return _params.default_mplp_params, _params.SIZE_PRESETS
 
@@ -151,7 +151,7 @@ def mplp(fig=None,
 
     size: scales font sizes, spine/tick line widths and colorbar thickness to fit the
         output medium, without touching data-plotting choices. One of (see
-        mplify._params.SIZE_PRESETS — edit that file to change these defaults):
+        mplify.DEFAULT_PARAMS.SIZE_PRESETS — edit that file to change these defaults):
         'xs', 's', 'm' (default), 'l', 'xl', 'xxl', or the aliases
         'paper' (-> 's'), 'slide' (-> 'm'), 'poster' (-> 'l').
         Any of title_s, axlab_s, ticklab_s, lw, cbar_w, clabel_s, cticks_s,

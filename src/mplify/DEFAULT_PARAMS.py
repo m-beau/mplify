@@ -14,7 +14,7 @@ edits here take effect on your very next mplp() call — no kernel restart
 and no need to have %autoreload enabled.
 """
 
-from mplify._defaults import DEFAULT_FONT_FAMILY
+from mplify._fonts import DEFAULT_FONT_FAMILY
 
 default_mplp_params = dict(
     # font
