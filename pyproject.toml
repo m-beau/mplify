@@ -6,11 +6,20 @@ readme = "README.md"
 authors = [
     { name = "m-beau", email = "maximebeaujeanroch047@gmail.com" }
 ]
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
 requires-python = ">=3.10"
 dependencies = [
-    "ipykernel>=7.3.0",
     "matplotlib",
     "numpy",
+]
+
+[dependency-groups]
+# Only needed to run quickstart.ipynb and to use html_palette()'s inline
+# preview — mplify itself imports IPython lazily, so it is not a runtime dep.
+dev = [
+    "ipykernel>=7.3.0",
+    "ruff",
 ]
 
 [build-system]

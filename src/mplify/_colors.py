@@ -142,7 +142,13 @@ def html_palette(colors, maxwidth=20, as_str=False, show=True):
             )
     palette += '</svg>'
     if not as_str:
-        from IPython.display import display, HTML as IPyHTML
+        try:
+            from IPython.display import display, HTML as IPyHTML
+        except ImportError as e:
+            raise ImportError(
+                "html_palette() needs IPython to render inline. Either install "
+                "it (pip install ipython) or pass as_str=True to get the raw "
+                "SVG string back instead.") from e
         palette = IPyHTML(palette)
         if show:
             display(palette)

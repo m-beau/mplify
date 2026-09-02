@@ -165,9 +165,12 @@ def mplp(fig=None,
         passed via cticks) are recomputed with mplify's smart tick spacing
         (get_bestticks) instead of matplotlib's own locator / add_colorbar's
         own default, sparsened further ('xl'/'xxl') so tick labels don't crowd
-        each other at those sizes. Ignored when size is None. Set to False to
-        always keep matplotlib's/add_colorbar's own tick placement regardless
-        of size.
+        each other at those sizes. Ignored when size is None, and skipped on
+        non-linear (log/symlog/logit) axes, which keep their own locator. Set
+        to False to always keep matplotlib's/add_colorbar's own tick placement
+        regardless of size.
+        Note that passing any size therefore does slightly more than rescale
+        fonts: mplp(size='m') and mplp() differ in tick placement.
 
     align_x_labels / align_y_labels: if True (default) and prettify=True, call
         fig.align_xlabels / fig.align_ylabels so shared axis labels line up
@@ -303,13 +306,16 @@ def mplp(fig=None,
     # pass explicitly are recomputed with get_bestticks instead of matplotlib's
     # own locator, so they land on the same nice round spacing as e.g. colorbar
     # ticks — sparser still for 'xl'/'xxl', where big tick labels need more room.
+    # get_bestticks only makes sense on a linear scale — on a log/symlog/logit
+    # axis it would replace matplotlib's decade ticks with linear round numbers
+    # and blank out most of the labels, so those axes keep their own locator.
     adjust_ticks = prettify and size is not None and adjust_ticks_from_size
 
     if prettify and xticks is None:
         if reset_xticks:
             ax.xaxis.set_major_locator(AutoLocator())
         xticks = ax.get_xticks()
-        if adjust_ticks:
+        if adjust_ticks and ax.get_xscale() == 'linear':
             x0, x1 = ax.get_xlim()
             if x0 != x1:
                 try:
@@ -322,7 +328,7 @@ def mplp(fig=None,
         if reset_yticks:
             ax.yaxis.set_major_locator(AutoLocator())
         yticks = ax.get_yticks()
-        if adjust_ticks:
+        if adjust_ticks and ax.get_yscale() == 'linear':
             y0, y1 = ax.get_ylim()
             if y0 != y1:
                 try:
@@ -427,8 +433,12 @@ def mplp(fig=None,
                 ax.spines[sp].set_visible(True)
 
     # Background transparency
+    # Both patches must go: the axis patch alone leaves the figure patch
+    # painted white underneath (and prettify sets it white explicitly below),
+    # so a "transparent" figure would still save with a white background.
     if transparent_background is not None:
         ax.patch.set_alpha(0 if transparent_background else 1)
+        fig.patch.set_alpha(0 if transparent_background else 1)
 
     # Horizontal and vertical reference lines
     if hlines is not None:
@@ -495,7 +505,7 @@ def mplp(fig=None,
                 cb_kwargs[k] = v
         fig = add_colorbar(fig, ax, None, **cb_kwargs)
 
-    if prettify:
+    if prettify and not transparent_background:
         fig.patch.set_facecolor('white')
 
     # Scalebar
@@ -508,12 +518,13 @@ def mplp(fig=None,
     if saveFig:
         if figname is None and title is not None:
             figname = title
-        save_mpl_fig(fig, figname, saveDir, _format, dpi=500)
+        save_mpl_fig(fig, figname, saveDir, _format, dpi=500,
+                     transparent=bool(transparent_background))
 
     return fig, ax
 
 
-def save_mpl_fig(fig, figname, saveDir, _format='pdf', dpi=500):
+def save_mpl_fig(fig, figname, saveDir, _format='pdf', dpi=500, transparent=False):
     """Save a matplotlib figure with editable text.
 
     Arguments:
@@ -522,6 +533,7 @@ def save_mpl_fig(fig, figname, saveDir, _format='pdf', dpi=500):
         - saveDir: output directory path
         - _format: file format ('pdf', 'png', 'svg', etc.)
         - dpi: resolution in dots per inch
+        - transparent: if True, save with a transparent background
     """
     # Temporarily set params for high-quality output
     dpi_orig = mpl.rcParams['figure.dpi']
@@ -543,7 +555,7 @@ def save_mpl_fig(fig, figname, saveDir, _format='pdf', dpi=500):
                     f"{saveDir.parent} does not exist.")
             saveDir.mkdir()
         p = saveDir / f"{figname}.{_format}"
-        fig.savefig(p, dpi=dpi, bbox_inches='tight')
+        fig.savefig(p, dpi=dpi, bbox_inches='tight', transparent=transparent)
     finally:
         # Restore original parameters even if saving fails
         mpl.rcParams['figure.dpi'] = dpi_orig
