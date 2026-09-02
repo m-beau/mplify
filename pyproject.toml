@@ -1,6 +1,6 @@
 [project]
 name = "mplify"
-version = "1.0.1"
+version = "1.0.2"
 description = "MatPlotLib Prettifier - make plots pretty with a single function call"
 readme = "README.md"
 authors = [
