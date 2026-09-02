@@ -1,6 +1,8 @@
 # mplify
 
-**Matplotlib prettifier.** mplify is a Python package centered around one function, `mplp()`, which strips away unnecessary graphical elements from your matplotlib plots and optimizes their style for your slides, posters, or papers.
+Mplify (Matplotlib prettifier) is a Python package built around a single function, `mplp()`: add one line at the end of your plotting code, and it strips the clutter out of the figure and scales its style for a paper, a slide, or a poster.
+
+`mplp()` has been growing since 2016 — first as the plotting helpers of my PhD, then as the plotting layer of [NeuroPyxels](https://github.com/m-beau/NeuroPyxels).
 
 ```python
 import matplotlib.pyplot as plt
@@ -10,7 +12,7 @@ plt.plot(x, y)
 mplp() # applies to the last active figure/axis
 ```
 
-And every knob you would otherwise go hunting for across matplotlib's API is a keyword on that same call — one flat list, nothing nested, nothing else to import:
+Every common tweak you would otherwise struggle to find across matplotlib's API is an argument of the same function - one flat structure, nothing nested, nothing else to import:
 
 ```python
 mplp(xlim=(0, 3*np.pi), ylim=(-0.55, 0.85),                        # limits
@@ -53,9 +55,9 @@ for sp in ('left', 'bottom'):
     ax.spines[sp].set_lw(1)
 ```
 
-Five different APIs (`set_xticklabels`, `set_xlabel`, `tick_params`, `spines`), three different spellings of the same concept (`fontsize`, `size`, `fontweight`/`weight`), and potential order-related bugs: ticks and limits interact, so calling them in the wrong order silently gives you a different figure.
+Five different APIs (`set_xticks`, `set_xticklabels`, `set_xlabel`, `tick_params`, `spines`), three different spellings of the same concept (`fontsize`, `size`, `fontweight`/`weight`), and a potential ordering bug: ticks and limits interact, so calling them in the wrong order silently gives you a different figure.
 
-To achieve the desired result, the knobs exist, but they're scattered across an imperative API surface that forces you to manually manage every piece of plot metadata. So most of us end up doing one of three things:
+The options all exist, they're just scattered across the API that makes you manage every piece of plot metadata by hand. So most of us end up doing one of three things:
 
 1. copy-pasting the same 15 lines of boilerplate into every script;
 2. re-googling "matplotlib rotate xticklabels" for the 200th time;
@@ -63,26 +65,33 @@ To achieve the desired result, the knobs exist, but they're scattered across an 
 
 ## The solution
 
-`mplp()` is one callable with a flat, self-explanatory argument list. Everything
-above becomes:
+`mplp()` is one callable with a flat, self-explanatory argument list. Everything above becomes:
 
 ```python
 mplp(xticks=positions, xtickslabels=labels, xtickrot=30, xtickha='right', xlabel='Condition', ylabel='Response')
 ```
 
+Every common tweak is an argument of that same function: `xtickrot`, `ticklab_s`, `hide_top_right`, `hlines`, `clabel`, `legend_loc`, `saveFig`. No object hierarchy to navigate, nothing extra to import, and the whole API fits in a single `mplp?` in your notebook - **your editor's autocomplete <u>is</u> the documentation**.
+
 Three things make this work:
 
-**Sensible defaults.** Call `mplp()` with no arguments and it applies a handcrafted default styling: larger font sizes, fatter spines, top and right spines gone, ticks pointing out, editable text in saved PDFs.
+- **Sensible defaults.** Call `mplp()` with no arguments and it applies a handcrafted default styling: larger font sizes, fatter spines, top and right spines gone, ticks pointing out, editable text in saved PDFs.
+- **Implicitly callable.** `mplp()` reads the current figure via `plt.gcf()`/`plt.gca()`, so you can just call it at the end of your script — whether you plot in matplotlib's explicit (object-oriented) or implicit (MATLAB-inherited, no figure or axis ever declared) style. You can always hand it `fig` and `ax` explicitly instead.
+- **One flat layer of arguments.** Every common figure tweak is one self-explanatory keyword — `xtickrot`, `ticklab_s`, `hide_top_right`, `hlines`, `clabel`, `legend_loc`, `saveFig` — with nothing nested and no objects to construct. Anything you don't pass keeps mplify's default; anything you do pass wins.
 
-**Implicitly callable.** `mplp()` reads the current figure via `plt.gcf()`/`plt.gca()`, so you can simply call it at the end of your script, whether you're using matplotlib in explicit (object-oriented) or implicit (without declaring figures and axis, MATLAB-inherited) mode. But you can always feed `fig` and `ax` to mplp explicitly.
-
-**One flat layer of arguments.** All the common figure tweaks are a self-explanatory keyword that can be remembered through checking the arguments of `mplp()`: `xtickrot`, `ticklab_s`, `hide_top_right`, `hlines`, `clabel`, `legend_loc`, `saveFig`. Anything you don't pass keeps mplify's default; anything you do pass takes precedence.
+The practical effect is that styling stops being a lookup. There is one signature to know, you type the thing you want, in the line you are already writing, and get back to your analysis. <u>No more context switching</u> - eventually, styling a figure stops being a detour through a documentation tab or a chat window, you can type it out yourself relatively easily (really, it 'makes matplotlib learnable at all').
 
 And it stays out of your way: `mplp()` edits the axis you hand it and nothing else — no style sheet to install, no `rcParams` rewritten mid-script, no surprises in the next figure. (The one exception is deliberate: importing mplify sets `pdf`/`ps`/`svg` font types to keep text editable in saved vector files. See [Saving](#saving).)
 
+### "But an LLM writes that for me now"
+
+It does, but that solved the *knowing* problem, not the verbosity problem. Your script still ends up with 40 lines of verbose code that take up a bunch of space and hurts your code's readability.
+
 ## mplify's origin story
 
-`mplp()` grew organically since 2016, from the plotting helpers I wrote throughout my PhD. It eventually became the plotting layer of [NeuroPyxels](https://github.com/m-beau/NeuroPyxels), the Python package to analyze Neuropixels data I developed in my PhD. My wife thought 'mplp' was a bad name, and it was already taken on PyPi anyway, so the package was coined mplify (a pun on 'amplify' and 'matplotlib prettifier'). Every argument in the cheat sheet below exists because I've needed it for a figure: the API is derived from a decade of actual plots, so it's likely to covers things you actually need rather than all of matplotlib's features. However, if you feel like something is missing for you, don't hesitate to post an issue!
+`mplp()` grew organically since 2016, from the plotting helpers I wrote throughout my PhD. It eventually became the plotting layer of [NeuroPyxels](https://github.com/m-beau/NeuroPyxels), the Python package to analyze Neuropixels data I developed in my PhD. My wife thought 'mplp' was a bad name, and it was already taken on PyPi anyway, so the package was coined mplify (a pun on 'amplify' and 'matplotlib prettifier').
+
+So every argument in the cheat sheet below exists because it's been needed for a real-world figure: the API is derived from a decade of actual plots, so it's likely to covers things you actually need rather than all of matplotlib's features. However, if you feel like something is missing for you, don't hesitate to post an issue!
 
 
 ## Installation
@@ -103,8 +112,7 @@ Requires Python ≥ 3.10, matplotlib, numpy.
 
 ## Tour
 
-Left panel is matplotlib's default in every figure below. Right panel is one
-`mplp()` call. Full runnable versions of all of these live in
+In the figures below, the left panel is matplotlib's default and the right one is a single `mplp()` call. Fully runnable versions of all of them live in
 [`quickstart.ipynb`](quickstart.ipynb).
 
 ### Limits, ticks and labels, in the right order
@@ -139,7 +147,7 @@ mplp(hlines=[0], vlines=[np.pi, 2*np.pi],
 
 ### Good-looking colorbars
 
-By default, `plt.colorbar()` steals space from the parent axes, destroying the spatial integrity of your layout so a row of subplots frustratingly ends up with panels of different widths. mplify's colorbar is an inset anchored to the axis: the data area keeps the exact aspect ratio you gave it.
+By default, `plt.colorbar()` steals space from the parent axes, so a row of subplots ends up with panels of different widths — one shrunk by its colorbar, the rest not. mplify's colorbar is an inset anchored to the axis: the data area keeps the exact size and aspect ratio you gave it.
 
 ```python
 mplp(colorbar=True, vmin=-3, vmax=3, cmap='RdBu_r',
@@ -148,7 +156,7 @@ mplp(colorbar=True, vmin=-3, vmax=3, cmap='RdBu_r',
 
 ![colorbar](doc/img/05_colorbar.png)
 
-### Exotic colormaps
+### Diverging colormaps that really center on zero
 
 If your data span −2 to 5, `cmap='RdBu_r'` puts white at 1.5. Half your "blue" values are positive numbers. `center=0` forces a true diverging scale, re-anchoring the colormap so zero is mapped to white without clipping your range.
 
@@ -172,9 +180,9 @@ mplp(hide_axis=True,
 
 ![scalebar](doc/img/07_scalebar.png)
 
-### `size` argument: easily scale plot metadata for papers, slides, posters
+### One `size` argument for papers, slides and posters
 
-The most common figure reformatting need: adjusting the optical sizing and typographic scale for different viewing distances. `size` rescales fonts, spine widths, and reference guides in one go.
+The most common reformatting job of all: the same panel has to be legible at 30 cm in a figure of a paper, and at 3 m on a poster. `size` rescales fonts, spine widths and reference guides in one go, and touches nothing about your data.
 
 ```python
 mplp(size='paper')    # or 'slide' (default), 'poster'
@@ -183,7 +191,12 @@ mplp(size='xs')       # or 's', 'm', 'l', 'xl', 'xxl'
 
 ![size presets](doc/img/08_sizes.png)
 
-### Bonus: color families for nested designs
+> [!NOTE]
+> The size presets (`'xs'`, `'s'`, `'m'`, `'l'`, `'xl'`, `'xxl'`, `'paper'`, `'slide'`, `'poster'`) can all be edited in `DEFAULT_PARAMS.py`.
+
+### Bonus: color families for nested groups
+
+For designs with a group and a level inside it (genotype × dose, region × condition): one hue family per group, one shade per level. The structure of the experiment is visible in the colors, and it survives being printed in greyscale.
 
 ```python
 families = get_color_families(ncolors=3, nfamilies=3, cmapstr='viridis')
@@ -212,10 +225,10 @@ mplp(xlabel='Feature 1', ylabel='Feature 2',
 
 ![everything](doc/img/09_everything.png)
 
-Four lines. Just to bring the point home, here is the raw matplotlib code that would be needed to produces the exact same panel (i.e. that an LLM would provide):
+Four lines. To bring the point home, here is the raw matplotlib for that exact same panel — roughly what an LLM hands you if you ask. Note that it is *correct*; being correct was never the issue:
 
 ```python
-### Raw matplotlib code - much more verbose..!
+# Raw matplotlib: the same panel, by hand
 import numpy as np
 from matplotlib.font_manager import FontProperties
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
@@ -273,7 +286,8 @@ fig.patch.set_facecolor('white')
 
 **41 lines, three imports, six APIs, two footguns** (`set_ticklabels` before
 `set_ticks` warns and can silently mislabel your axis; setting ticks quietly
-widens your limits, so you have to restore them afterwards).
+widens your limits, so you have to restore them afterwards). Generating it takes
+seconds; reading it, six months from now, does not.
 
 ### `prettify=False` — surgical mode
 
@@ -291,7 +305,7 @@ mplp(prettify=False, hide_top_right=True)
 
 ## Cheat sheet
 
-|  | Argument |
+| Matplotlib element | Argument |
 |---|---|
 | Figure / axis size (inches) | `figsize=(w, h)`, `axsize=(w, h)` |
 | Scale text for medium | `size='paper' / 'slide' / 'poster'` (also `xs`–`xxl`) |
@@ -338,8 +352,9 @@ mplp(prettify=False, hide_top_right=True)
 mplp(saveFig=True, saveDir='./figures', figname='fig2b', _format='pdf')
 ```
 
-Saves at 500 dpi with `pdf.fonttype = 42`, i.e. **text stays text**. You can open the PDF in Illustrator/Inkscape and fix your typo without
-re-running the analysis (You will. There is always a label to fix.)
+Saves at 500 dpi with `pdf.fonttype = 42`, i.e. **text stays text**. You can open
+the PDF in Illustrator/Inkscape and fix your typo without re-running the
+analysis. (You will. There is always one more label to fix.)
 
 ---
 
@@ -359,7 +374,7 @@ from mplify import default_mplp_params, SIZE_PRESETS  # snapshots, for inspectio
 ## Not a style sheet, not a wrapper
 
 - **Not a style sheet.** Style sheets set global `rcParams` across all figures; they can't rotate specific tick labels or put a colorbar on a specific axis. mplify operates per-axis, at call time, after your data is plotted.
-- **Not a plotting wrapper.** mplify never draws your data. You keep `ax.plot`, `ax.imshow`, seaborn, whatever you already use (if it's built on top of matplotlib, of course).
+- **Not a plotting wrapper.** mplify never draws your data. You keep `ax.plot`, `ax.imshow`, seaborn — anything that ends up on a matplotlib axis. `mplp()` only handles what comes after.
 
 ---
 
@@ -367,7 +382,7 @@ from mplify import default_mplp_params, SIZE_PRESETS  # snapshots, for inspectio
 
 ```bash
 uv sync                            # editable install into .venv
-uv run python doc/make_figures.py  # regenerate the README figures into doc img/
+uv run python doc/make_figures.py  # regenerate the README figures into doc/img/
 ```
 
 The full gallery is [`quickstart.ipynb`](quickstart.ipynb) — open it in your editor of choice and point the kernel at `.venv`.
