@@ -34,14 +34,37 @@ y = np.sin(x) * np.exp(-x / 5)
 
 # ---------------------------------------------------------------- 1. hero
 def fig_hero():
-    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    """3 panels: raw matplotlib, bare mplp(), then mplp() with arguments.
+
+    The third panel is saved by mplp itself (saveFig/saveDir/figname/_format),
+    so this figure is also a live test of the saving path.
+    """
+    y2 = 0.8 * np.sin(x - 0.7) * np.exp(-x / 8)
+    fig, axes = plt.subplots(1, 3, figsize=(15, 3.6))
     for ax in axes:
-        ax.plot(x, y, lw=2, color='#3B6EA5')
+        ax.plot(x, y, lw=2, color='#3B6EA5', label='data')
+        ax.plot(x, y2, lw=2, color='#C4553B', label='model')
         ax.set_xlabel('Time (s)')
         ax.set_ylabel('Amplitude (a.u.)')
+    axes[0].legend()
     axes[0].set_title('matplotlib defaults')
-    mplp(ax=axes[1], title='+ mplp()', tight_layout=True)
-    save(fig, '01_hero')
+
+    mplp(ax=axes[1], title='mplp()')
+
+    mplp(ax=axes[2],
+         xlim=(0, 3 * np.pi), ylim=(-0.55, 0.85),
+         xticks=[0, np.pi, 2 * np.pi, 3 * np.pi],
+         xtickslabels=['0', 'π', '2π', '3π'],
+         xtickrot=45, xtickha='right',
+         yticks=[-0.4, 0, 0.4, 0.8],
+         xlabel='Phase', ylabel='Amplitude (a.u.)', title='mplp(**kwargs)',
+         hlines=[0], lines_kwargs={'lw': 1.5, 'ls': ':', 'color': 'grey'},
+         show_legend=True, legend_loc=(0.6, 0.62),
+         ticks_direction='in', lw=2, ticklab_s=15,
+         hspace=0.1, wspace=0.35,
+         saveFig=True, saveDir=str(OUT), figname='01_hero', _format='png')
+    plt.close(fig)
+    print(f"  wrote {OUT / '01_hero.png'}")
 
 
 # ------------------------------------------------------- 2. axes / ticks

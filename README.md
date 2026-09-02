@@ -1,28 +1,44 @@
 # mplify
 
-**MatPlotLib prettifier.** One function, `mplp()` (MPLP: MatPlotLib Prettify, or Make Plot Pretty), that turns a matplotlib plot into a great v1 figure ready for your slides, poster, or paper.
+**Matplotlib prettifier.** mplify is a Python package centered around one function, `mplp()`, which strips away unnecessary graphical elements from your matplotlib plots and optimizes their style for your slides, posters, or papers.
 
 ```python
 import matplotlib.pyplot as plt
 from mplify import mplp
 
 plt.plot(x, y)
-mplp() # applies to the last figure and axis
+mplp() # applies to the last active figure/axis
+```
+
+And every knob you would otherwise go hunting for across matplotlib's API is a keyword on that same call — one flat list, nothing nested, nothing else to import:
+
+```python
+mplp(xlim=(0, 3*np.pi), ylim=(-0.55, 0.85),                        # limits
+     xticks=[0, np.pi, 2*np.pi, 3*np.pi],                          # tick positions
+     xtickslabels=['0', 'π', '2π', '3π'],                          # tick label text
+     xtickrot=45, xtickha='right',                                 # ...rotated, realigned
+     yticks=[-0.4, 0, 0.4, 0.8],
+     xlabel='Phase', ylabel='Amplitude (a.u.)',                    # labels and title
+     title='mplp(**kwargs)',
+     hlines=[0], lines_kwargs={'lw':1.5,'ls':':','color':'grey'},  # reference lines
+     show_legend=True, legend_loc=(0.6, 0.62),                     # legend, placed by hand
+     ticks_direction='in', lw=2, ticklab_s=15,                     # ticks, spines, fonts
+     saveFig=True, saveDir='./figures',                            # save it: 500 dpi,
+     figname='hero', _format='png')                                # text stays editable
 ```
 
 <p align="center">
-  <img src="doc/img/01_hero.png" width="100%" alt="matplotlib defaults vs mplp()">
+  <img src="doc/img/01_hero.png" width="100%" alt="matplotlib defaults vs mplp() vs mplp() with arguments">
 </p>
 
----
+*(the third panel is that exact call, and `saveFig` is what wrote the PNG you are looking at — this README's hero image saves itself. See [`doc/make_figures.py`](doc/make_figures.py).)*
+
 
 ## The problem
 
-Matplotlib is very highly customizable. That is the problem.
+Matplotlib is highly customizable through an extensive API, which comes at the cost of verbosity and complexity.
 
-Say you want to rotate your x tick labels 30°, right-align them so they don't
-collide with the axis, bump the axis label font, and drop the top and right
-spines. Four small, obvious, universally wanted things. Here is matplotlib:
+Say you want to rotate your x tick labels 30°, right-align them so they don't collide with the axis, bump the axis label font, and drop the top and right spines. Here is the matplotlib code to do so:
 
 ```python
 ax.set_xticks(positions)
@@ -39,7 +55,7 @@ for sp in ('left', 'bottom'):
 
 Five different APIs (`set_xticklabels`, `set_xlabel`, `tick_params`, `spines`), three different spellings of the same concept (`fontsize`, `size`, `fontweight`/`weight`), and potential order-related bugs: ticks and limits interact, so calling them in the wrong order silently gives you a different figure.
 
-To achieve the desired result, the knobs exist, but they're scattered across a documentation surface large enough that most of us end up doing one of three things:
+To achieve the desired result, the knobs exist, but they're scattered across an imperative API surface that forces you to manually manage every piece of plot metadata. So most of us end up doing one of three things:
 
 1. copy-pasting the same 15 lines of boilerplate into every script;
 2. re-googling "matplotlib rotate xticklabels" for the 200th time;
@@ -64,9 +80,12 @@ Three things make this work:
 
 And it stays out of your way: `mplp()` edits the axis you hand it and nothing else — no style sheet to install, no `rcParams` rewritten mid-script, no surprises in the next figure. (The one exception is deliberate: importing mplify sets `pdf`/`ps`/`svg` font types to keep text editable in saved vector files. See [Saving](#saving).)
 
----
+## mplify's origin story
 
-## Install
+`mplp()` grew organically since 2016, from the plotting helpers I wrote throughout my PhD. It eventually became the plotting layer of [NeuroPyxels](https://github.com/m-beau/NeuroPyxels), the Python package to analyze Neuropixels data I developed in my PhD. My wife thought 'mplp' was a bad name, and it was already taken on PyPi anyway, so the package was coined mplify (a pun on 'amplify' and 'matplotlib prettifier'). Every argument in the cheat sheet below exists because I've needed it for a figure: the API is derived from a decade of actual plots, so it's likely to covers things you actually need rather than all of matplotlib's features. However, if you feel like something is missing for you, don't hesitate to post an issue!
+
+
+## Installation
 
 ```bash
 pip install mplify        # or: uv add mplify
@@ -81,7 +100,6 @@ cd mplify && uv sync
 
 Requires Python ≥ 3.10, matplotlib, numpy.
 
----
 
 ## Tour
 
@@ -121,10 +139,7 @@ mplp(hlines=[0], vlines=[np.pi, 2*np.pi],
 
 ### Good-looking colorbars
 
-`plt.colorbar()` steals space from the parent axes, so a row of subplots ends up
-with panels of different widths (and one of them mysteriously narrower than its
-neighbours). mplify's colorbar is an inset anchored to the axis: the data area
-keeps the exact size you gave it.
+By default, `plt.colorbar()` steals space from the parent axes, destroying the spatial integrity of your layout so a row of subplots frustratingly ends up with panels of different widths. mplify's colorbar is an inset anchored to the axis: the data area keeps the exact aspect ratio you gave it.
 
 ```python
 mplp(colorbar=True, vmin=-3, vmax=3, cmap='RdBu_r',
@@ -135,9 +150,7 @@ mplp(colorbar=True, vmin=-3, vmax=3, cmap='RdBu_r',
 
 ### Exotic colormaps
 
-If your data span −2 to 5, `cmap='RdBu_r'` puts white at **1.5**. Half your
-"blue" values are positive numbers. `center=0` re-anchors the colormap so white
-means zero, without clipping the range.
+If your data span −2 to 5, `cmap='RdBu_r'` puts white at 1.5. Half your "blue" values are positive numbers. `center=0` forces a true diverging scale, re-anchoring the colormap so zero is mapped to white without clipping your range.
 
 ```python
 ax.imshow(data, vmin=-2, vmax=5, cmap=get_bounded_cmap('RdBu_r', -2, 0, 5))
@@ -159,9 +172,9 @@ mplp(hide_axis=True,
 
 ![scalebar](doc/img/07_scalebar.png)
 
-### `size=` — one figure, three media
+### `size` argument: easily scale plot metadata for papers, slides, posters
 
-The most common figure reformatting need: scaling a figure's "metadata" with respect to its data for different media. `size` rescales fonts, spine widths, tick widths, colorbar thickness and scalebar text for the viewing distance..
+The most common figure reformatting need: adjusting the optical sizing and typographic scale for different viewing distances. `size` rescales fonts, spine widths, and reference guides in one go.
 
 ```python
 mplp(size='paper')    # or 'slide' (default), 'poster'
@@ -171,10 +184,6 @@ mplp(size='xs')       # or 's', 'm', 'l', 'xl', 'xxl'
 ![size presets](doc/img/08_sizes.png)
 
 ### Bonus: color families for nested designs
-
-Genotype × dose, region × condition, subject × session. One hue per group, one
-shade within it — so the structure of the design is visible without reading the
-legend.
 
 ```python
 families = get_color_families(ncolors=3, nfamilies=3, cmapstr='viridis')
