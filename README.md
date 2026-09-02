@@ -1,8 +1,9 @@
 # mplify
 
 [![PyPI](https://img.shields.io/pypi/v/mplify.svg)](https://pypi.org/project/mplify/)
-[![Python](https://img.shields.io/pypi/pyversions/mplify.svg)](https://pypi.org/project/mplify/)
-[![License](https://img.shields.io/pypi/l/mplify.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://pypi.org/project/mplify/)
+[![License](https://img.shields.io/github/license/m-beau/mplify.svg)](LICENSE)
+[![Downloads](https://static.pepy.tech/badge/mplify)](https://pepy.tech/project/mplify)
 
 Mplify (Matplotlib prettifier) is a Python package built around a single function, `mplp()`: add one line at the end of your plotting code, and it strips the clutter out of the figure and scales its style for a paper, a slide, or a poster.
 

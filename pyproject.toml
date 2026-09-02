@@ -9,10 +9,29 @@ authors = [
 license = "GPL-3.0-or-later"
 license-files = ["LICENSE"]
 requires-python = ">=3.10"
+keywords = ["matplotlib", "plotting", "visualization", "figures", "science"]
+# The Python :: X.Y classifiers are what PyPI (and the shields.io pyversions
+# badge) read — requires-python alone is not enough for either.
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Visualization",
+    "Framework :: Matplotlib",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
 dependencies = [
     "matplotlib",
     "numpy",
 ]
+
+[project.urls]
+Homepage = "https://github.com/m-beau/mplify"
+Issues = "https://github.com/m-beau/mplify/issues"
 
 [dependency-groups]
 # Only needed to run quickstart.ipynb and to use html_palette()'s inline
