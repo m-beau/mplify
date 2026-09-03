@@ -5,37 +5,37 @@
 [![License](https://img.shields.io/github/license/m-beau/mplify.svg)](LICENSE)
 [![Downloads](https://static.pepy.tech/badge/mplify)](https://pepy.tech/project/mplify)
 
-Mplify (Matplotlib prettifier) is a Python package built around a single function, `mplp()`: add one line at the end of your plotting code, and it strips the clutter out of the figure and scales its style for a paper, a slide, or a poster.
+Mplify (Matplotlib prettifier) is a Python package built around a single function of the same name, `mplify()`: add one line at the end of your plotting code, and it strips the clutter out of the figure and scales its style for a paper, a slide, or a poster.
 
-`mplp()` has been growing since 2016 — first as the plotting helpers of my PhD, then as the plotting layer of [NeuroPyxels](https://github.com/m-beau/NeuroPyxels).
+`mplify()` has been growing since 2016 — first as the plotting helpers of my PhD, then as the plotting layer of [NeuroPyxels](https://github.com/m-beau/NeuroPyxels).
 
 ```python
 import matplotlib.pyplot as plt
-from mplify import mplp
+from mplify import mplify
 
 plt.plot(x, y)
-mplp() # applies to the last active figure/axis
+mplify() # applies to the last active figure/axis
 ```
 
 Every common tweak you would otherwise struggle to find across matplotlib's API is an argument of that same function:
 
 ```python
-mplp(xlim=(0, 3*np.pi), ylim=(-0.55, 0.85),                        # limits
-     xticks=[0, np.pi, 2*np.pi, 3*np.pi],                          # tick positions
-     xtickslabels=['0', 'π', '2π', '3π'],                          # tick label text
-     xtickrot=45, xtickha='right',                                 # ...rotated, realigned
-     yticks=[-0.4, 0, 0.4, 0.8],
-     xlabel='Phase', ylabel='Amplitude (a.u.)',                    # labels and title
-     title='mplp(**kwargs)',
-     hlines=[0], lines_kwargs={'lw':1.5,'ls':':','color':'grey'},  # reference lines
-     show_legend=True, legend_loc=(0.6, 0.62),                     # legend, placed by hand
-     ticks_direction='in', lw=2, ticklab_s=15,                     # ticks, spines, fonts
-     saveFig=True, saveDir='./figures',                            # save it: 500 dpi,
-     figname='hero', _format='png')                                # text stays editable
+mplify(xlim=(0, 3*np.pi), ylim=(-0.55, 0.85),                        # limits
+       xticks=[0, np.pi, 2*np.pi, 3*np.pi],                          # tick positions
+       xtickslabels=['0', 'π', '2π', '3π'],                          # tick label text
+       xtickrot=45, xtickha='right',                                 # ...rotated, realigned
+       yticks=[-0.4, 0, 0.4, 0.8],
+       xlabel='Phase', ylabel='Amplitude (a.u.)',                    # labels and title
+       title='mplify(**kwargs)',
+       hlines=[0], lines_kwargs={'lw':1.5,'ls':':','color':'grey'},  # reference lines
+       show_legend=True, legend_loc=(0.6, 0.62),                     # legend, placed by hand
+       ticks_direction='in', lw=2, ticklab_s=15,                     # ticks, spines, fonts
+       saveFig=True, saveDir='./figures',                            # save it: 500 dpi,
+       figname='hero', _format='png')                                # text stays editable
 ```
 
 <p align="center">
-  <img src="doc/img/01_hero.png" width="100%" alt="matplotlib defaults vs mplp() vs mplp() with arguments">
+  <img src="doc/img/01_hero.png" width="100%" alt="matplotlib defaults vs mplify() vs mplify() with arguments">
 </p>
 
 *(the third panel is that exact call, and `saveFig` is what wrote the PNG you are looking at — this README's hero image saves itself. See [`doc/make_figures.py`](doc/make_figures.py).)*
@@ -55,6 +55,19 @@ cd mplify && uv sync
 ```
 
 Requires Python ≥ 3.10, matplotlib and numpy.
+
+> [!IMPORTANT]
+> **Upgrading from 1.x:** the core function was renamed `mplp()` → `mplify()`, and
+> `default_mplp_params` → `default_mplify_params`. The old names are gone, so update
+> your imports:
+>
+> ```python
+> from mplify import mplp    # 1.x
+> from mplify import mplify  # 2.0+
+> ```
+>
+> Nothing else changed — every argument keeps its name and behaviour. A project-wide
+> find-and-replace of `mplp` with `mplify` is enough.
 
 
 ## The problem
@@ -86,21 +99,21 @@ The tweaks are all possible. They are just scattered across an API that makes yo
 
 ## The solution
 
-`mplp()` is one callable with a flat, self-explanatory argument list. Everything above becomes:
+`mplify()` is one callable with a flat, self-explanatory argument list. Everything above becomes:
 
 ```python
-mplp(xticks=positions, xtickslabels=labels, xtickrot=30, xtickha='right', xlabel='Condition', ylabel='Response')
+mplify(xticks=positions, xtickslabels=labels, xtickrot=30, xtickha='right', xlabel='Condition', ylabel='Response')
 ```
 
-No object hierarchy to navigate, nothing extra to import, and the whole API fits in a single `mplp?` in your notebook — **your editor's autocomplete is the documentation**.
+No object hierarchy to navigate, nothing extra to import, and the whole API fits in a single `mplify?` in your notebook — **your editor's autocomplete is the documentation**.
 
 Three things make this work:
 
-- **Sensible defaults.** Call `mplp()` with no arguments and it applies a handcrafted default styling: larger font sizes, fatter spines, top and right spines gone, ticks pointing out, editable text in saved PDFs.
-- **Implicitly callable.** `mplp()` reads the current figure via `plt.gcf()`/`plt.gca()`, so you can just call it at the end of your script — whether you plot in matplotlib's explicit (object-oriented) or implicit (MATLAB-inherited, no figure or axis ever declared) style. You can always hand it `fig` and `ax` explicitly instead.
+- **Sensible defaults.** Call `mplify()` with no arguments and it applies a handcrafted default styling: larger font sizes, fatter spines, top and right spines gone, ticks pointing out, editable text in saved PDFs.
+- **Implicitly callable.** `mplify()` reads the current figure via `plt.gcf()`/`plt.gca()`, so you can just call it at the end of your script — whether you plot in matplotlib's explicit (object-oriented) or implicit (MATLAB-inherited, no figure or axis ever declared) style. You can always hand it `fig` and `ax` explicitly instead.
 - **One flat layer of arguments.** Every common figure tweak is one self-explanatory keyword — `xtickrot`, `ticklab_s`, `hide_top_right`, `hlines`, `clabel`, `legend_loc`, `saveFig` — with nothing nested and no objects to construct. Anything you don't pass keeps mplify's default; anything you do pass wins.
 
-The practical effect is that styling stops being a documentation lookup or an LLM call. You instead just check mplp's signature (arguments) on site. **No more context switching** - mplify makes matplotlib actually 'learnable'!
+The practical effect is that styling stops being a documentation lookup or an LLM call. You instead just check mplify's signature (arguments) on site. **No more context switching** - mplify makes matplotlib actually 'learnable'!
 
 ### "But an LLM writes that for me now"
 
@@ -108,26 +121,26 @@ It does, but that solved the *writing* problem (knowing the API), not the *readi
 
 ## mplify's origin story
 
-`mplp()` grew organically since 2016, from the plotting helpers I wrote throughout my PhD. It eventually became the plotting layer of [NeuroPyxels](https://github.com/m-beau/NeuroPyxels), the Python package to analyze Neuropixels data I developed. My wife thought 'mplp' was a bad name, and it was already taken on PyPi anyway, so the package was coined `mplify` (a pun on 'amplify' and 'matplotlib prettifier').
+The function grew organically since 2016, from the plotting helpers I wrote throughout my PhD, under the name `mplp()` (for 'Make PLots Pretty'). It eventually became the plotting layer of [NeuroPyxels](https://github.com/m-beau/NeuroPyxels), the Python package to analyze Neuropixels data I developed. My wife thought 'mplp' was a bad name, and it was already taken on PyPi anyway, so the package was coined `mplify` (a pun on 'amplify' and 'matplotlib prettifier') — and as of v2.0.0 the function goes by `mplify()` too, so there is only one name left to remember.
 
 So every argument in the cheat sheet below exists because it's been needed for a real-world figure: the API is derived from a decade of actual plots, so it's likely to cover things you actually need rather than all of matplotlib's features. However, if you feel like something is missing for you, don't hesitate to post an issue!
 
 
 ## Tour
 
-In the figures below, the left panel is matplotlib's default and the right one is a single `mplp()` call. Fully runnable versions of all of them live in
+In the figures below, the left panel is matplotlib's default and the right one is a single `mplify()` call. Fully runnable versions of all of them live in
 [`quickstart.ipynb`](quickstart.ipynb).
 
 ### Limits, ticks and labels, in the right order
 
-`mplp` applies limits before ticks (and re-applies them after), so you never have
+`mplify` applies limits before ticks (and re-applies them after), so you never have
 to remember which call comes first.
 
 ```python
-from mplify import mplp
-mplp(xlim=(0, 8), ylim=(-0.5, 1),
-     xticks=[0, 2, 4, 6, 8], yticks=[-0.5, 0, 0.5, 1],
-     xlabel='Time (s)', ylabel='Amplitude (a.u.)')
+from mplify import mplify
+mplify(xlim=(0, 8), ylim=(-0.5, 1),
+       xticks=[0, 2, 4, 6, 8], yticks=[-0.5, 0, 0.5, 1],
+       xlabel='Time (s)', ylabel='Amplitude (a.u.)')
 ```
 
 ![limits and ticks](doc/img/02_axes.png)
@@ -135,7 +148,7 @@ mplp(xlim=(0, 8), ylim=(-0.5, 1),
 ### Tick labels: text, rotation, alignment
 
 ```python
-mplp(xticks=range(4), xtickslabels=categories, xtickrot=30, xtickha='right')
+mplify(xticks=range(4), xtickslabels=categories, xtickrot=30, xtickha='right')
 ```
 
 ![rotated tick labels](doc/img/03_ticklabels.png)
@@ -143,8 +156,8 @@ mplp(xticks=range(4), xtickslabels=categories, xtickrot=30, xtickha='right')
 ### Reference lines
 
 ```python
-mplp(hlines=[0], vlines=[np.pi, 2*np.pi],
-     lines_kwargs={'lw': 2, 'ls': ':', 'color': 'grey'})
+mplify(hlines=[0], vlines=[np.pi, 2*np.pi],
+       lines_kwargs={'lw': 2, 'ls': ':', 'color': 'grey'})
 ```
 
 ![reference lines](doc/img/04_lines.png)
@@ -154,8 +167,8 @@ mplp(hlines=[0], vlines=[np.pi, 2*np.pi],
 By default, `plt.colorbar()` steals space from the parent axes, so a row of subplots ends up with panels of different widths — one shrunk by its colorbar, the rest not. mplify's colorbar is an inset anchored to the axis: the data area keeps the exact size and aspect ratio you gave it.
 
 ```python
-mplp(colorbar=True, vmin=-3, vmax=3, cmap='RdBu_r',
-     clabel='Z-score', cticks=[-2, 0, 2])
+mplify(colorbar=True, vmin=-3, vmax=3, cmap='RdBu_r',
+       clabel='Z-score', cticks=[-2, 0, 2])
 ```
 
 ![colorbar](doc/img/05_colorbar.png)
@@ -166,12 +179,12 @@ If your data span −2 to 5, `cmap='RdBu_r'` puts white at 1.5. Half your "blue"
 
 ```python
 cmap, vmin, center, vmax = 'RdBu_r', -2, 0, 5
-# 1. the data: build the re-anchored colormap yourself and hand it to imshow (mplp doesn't edit your data)
+# 1. the data: build the re-anchored colormap yourself and hand it to imshow (mplify doesn't edit your data)
 ax.imshow(data, vmin=vmin, vmax=vmax, cmap=get_bounded_cmap(cmap, vmin, center, vmax))
 
-# 2. the colorbar: center=0 makes mplp re-anchor its own colorbar the same way,
+# 2. the colorbar: center=0 makes mplify re-anchor its own colorbar the same way,
 #    so the bar you draw matches the image you drew
-mplp(colorbar=True, cmap=cmap, vmin=vmin, center=center, vmax=vmax)
+mplify(colorbar=True, cmap=cmap, vmin=vmin, center=center, vmax=vmax)
 ```
 
 ![bounded colormap](doc/img/06_bounded_cmap.png)
@@ -182,9 +195,9 @@ For traces where the absolute values are meaningless but the scale isn't —
 ephys, imaging, anything with a time base.
 
 ```python
-mplp(hide_axis=True,
-     xscalebar=5, yscalebar=200,
-     xscalebar_unit=' ms', yscalebar_unit=' μV')
+mplify(hide_axis=True,
+       xscalebar=5, yscalebar=200,
+       xscalebar_unit=' ms', yscalebar_unit=' μV')
 ```
 
 ![scalebar](doc/img/07_scalebar.png)
@@ -194,8 +207,8 @@ mplp(hide_axis=True,
 The most common reformatting job of all: the same panel has to be legible at 30 cm in a figure of a paper, and at 3 m on a poster. `size` rescales fonts, spine widths and reference guides in one go, and touches nothing about your data.
 
 ```python
-mplp(size='paper')    # or 'slide', 'poster'
-mplp(size='xs')       # or 's', 'm', 'l', 'xl', 'xxl'
+mplify(size='paper')    # or 'slide', 'poster'
+mplify(size='xs')       # or 's', 'm', 'l', 'xl', 'xxl'
 ```
 
 ![size presets](doc/img/08_sizes.png)
@@ -204,25 +217,25 @@ mplp(size='xs')       # or 's', 'm', 'l', 'xl', 'xxl'
 > The size presets (`'xs'`, `'s'`, `'m'`, `'l'`, `'xl'`, `'xxl'`, `'paper'`, `'slide'`, `'poster'`) can all be edited in `DEFAULT_PARAMS.py`. `'paper'`, `'slide'` and `'poster'` are aliases for `'s'`, `'m'` and `'l'`.
 
 > [!IMPORTANT]
-> Default `mplp()` uses the `'m'` font sizes, passing *any* `size` additionally re-spaces your ticks onto round numbers (`get_bestticks`). Pass `adjust_ticks_from_size=False` to get the font scaling without the tick re-spacing.
+> Default `mplify()` uses the `'m'` font sizes, passing *any* `size` additionally re-spaces your ticks onto round numbers (`get_bestticks`). Pass `adjust_ticks_from_size=False` to get the font scaling without the tick re-spacing.
 >
-> On log-scaled axes the tick re-spacing is skipped automatically, so `mplp(size=...)` leaves ticks intact.
+> On log-scaled axes the tick re-spacing is skipped automatically, so `mplify(size=...)` leaves ticks intact.
 
 ### Multi-panel figures
 
-`mplp()` styles **one** axis per call: the one you pass with the `ax` arg, or the currently active one (implicit in `mplp()`). To apply mplify to all axes of a grid of subplots, loop over them:
+`mplify()` styles **one** axis per call: the one you pass with the `ax` arg, or the currently active one (implicit in `mplify()`). To apply mplify to all axes of a grid of subplots, loop over them:
 
 ```python
 fig, axes = plt.subplots(2, 2, figsize=(8, 6))
 for i, ax in enumerate(axes.flat):
     ax.plot(x, y[i])
-    mplp(fig=fig, ax=ax, xlabel='Time (s)', ylabel='Amplitude', size='paper')
+    mplify(fig=fig, ax=ax, xlabel='Time (s)', ylabel='Amplitude', size='paper')
 ```
 
 A handful of arguments are figure-wide rather than per-axis — `tight_layout`, `hspace`, `wspace`, `align_x_labels`, `align_y_labels`. They act on the whole figure no matter which axis you pass, so set them once on the last call rather than in every iteration:
 
 ```python
-mplp(fig=fig, ax=axes.flat[-1], tight_layout=True, hspace=0.4, wspace=0.3)
+mplify(fig=fig, ax=axes.flat[-1], tight_layout=True, hspace=0.4, wspace=0.3)
 ```
 
 `align_x_labels` and `align_y_labels` are on by default: shared axis labels line up across panels automatically. Turn them off when you resize a single axis with `axsize`, or aligning will drag its label toward its un-resized neighbours.
@@ -252,10 +265,10 @@ html_palette(colors)                # preview swatches inline in a notebook
 ### Everything at once
 
 ```python
-mplp(xlabel='Feature 1', ylabel='Feature 2',
-     colorbar=True, vmin=c.min(), vmax=c.max(), cmap='magma', clabel='F1 + F2',
-     hlines=[y.mean()], vlines=[x.mean()],
-     lines_kwargs={'lw': 1, 'ls': '--', 'color': 'grey', 'zorder': -1})
+mplify(xlabel='Feature 1', ylabel='Feature 2',
+       colorbar=True, vmin=c.min(), vmax=c.max(), cmap='magma', clabel='F1 + F2',
+       hlines=[y.mean()], vlines=[x.mean()],
+       lines_kwargs={'lw': 1, 'ls': '--', 'color': 'grey', 'zorder': -1})
 ```
 
 ![everything](doc/img/09_everything.png)
@@ -331,17 +344,17 @@ thing. `prettify=False` applies *only* what you pass and leaves everything else
 alone.
 
 ```python
-mplp(prettify=False, hide_top_right=True)
+mplify(prettify=False, hide_top_right=True)
 ```
 
 ![prettify false](doc/img/11_prettify.png)
 
-### mplp() returns the fig and ax it styled
+### mplify() returns the fig and ax it styled
 
-`mplp()` returns the `(fig, ax)` it styled, so you can keep working on them, which can turn useful:
+`mplify()` returns the `(fig, ax)` it styled, so you can keep working on them, which can turn useful:
 
 ```python
-fig, ax = mplp(xlabel='Time (s)')
+fig, ax = mplify(xlabel='Time (s)')
 ax.annotate('peak', xy=(3, 1))
 ```
 
@@ -376,7 +389,7 @@ ax.annotate('peak', xy=(3, 1))
 | Save | `saveFig=True`, `saveDir`, `figname`, `_format` |
 | Change only what I pass | `prettify=False` |
 
-### Helpers exported alongside `mplp`
+### Helpers exported alongside `mplify`
 
 | Function | Does |
 |---|---|
@@ -392,14 +405,14 @@ ax.annotate('peak', xy=(3, 1))
 | `save_mpl_fig(fig, name, dir, fmt)` | Save with Type-42 (editable) text |
 
 > [!NOTE]
-> `set_ax_size(ax, w, h)` and `mplp(axsize=(w, h))` sound alike but do the opposite thing. `set_ax_size` grows or shrinks the *figure* so that this axis ends up `w × h` inches — fine for a single-axis figure, disruptive for a grid. `axsize` keeps the figure exactly as it is and re-positions this one axis inside it, leaving its neighbours untouched.
+> `set_ax_size(ax, w, h)` and `mplify(axsize=(w, h))` sound alike but do the opposite thing. `set_ax_size` grows or shrinks the *figure* so that this axis ends up `w × h` inches — fine for a single-axis figure, disruptive for a grid. `axsize` keeps the figure exactly as it is and re-positions this one axis inside it, leaving its neighbours untouched.
 
 ---
 
 ## Saving
 
 ```python
-mplp(saveFig=True, saveDir='./figures', figname='fig2b', _format='pdf')
+mplify(saveFig=True, saveDir='./figures', figname='fig2b', _format='pdf')
 ```
 
 Saves at 500 dpi with `pdf.fonttype = 42`, i.e. **text stays text**. You can open
@@ -419,12 +432,12 @@ Worth knowing:
 ## Changing the defaults
 
 mplify's defaults live in one hand-editable file,
-[`src/mplify/DEFAULT_PARAMS.py`](src/mplify/DEFAULT_PARAMS.py): `default_mplp_params` for the base style, `SIZE_PRESETS` for the paper/slide/poster xs/s/m/l/xl/xxl defaults.
+[`src/mplify/DEFAULT_PARAMS.py`](src/mplify/DEFAULT_PARAMS.py): `default_mplify_params` for the base style, `SIZE_PRESETS` for the paper/slide/poster xs/s/m/l/xl/xxl defaults.
 
-Edit it and your next `mplp()` call picks the change up immediately — the file is re-read from disk whenever its mtime changes. No kernel restart or `%autoreload` needed.
+Edit it and your next `mplify()` call picks the change up immediately — the file is re-read from disk whenever its mtime changes. No kernel restart or `%autoreload` needed.
 
 ```python
-from mplify import default_mplp_params, SIZE_PRESETS  # snapshots, for inspection
+from mplify import default_mplify_params, SIZE_PRESETS  # snapshots, for inspection
 ```
 
 ---
@@ -432,7 +445,7 @@ from mplify import default_mplp_params, SIZE_PRESETS  # snapshots, for inspectio
 ## Not a style sheet, not a wrapper
 
 - **Not a style sheet.** Style sheets set global `rcParams` across all figures; they can't rotate specific tick labels or put a colorbar on a specific axis. mplify operates per-axis, at call time, after your data is plotted.
-- **Not a plotting wrapper.** mplify never draws your data. You keep `ax.plot`, `ax.imshow`, seaborn — anything that ends up on a matplotlib axis. `mplp()` only handles what comes after.
+- **Not a plotting wrapper.** mplify never draws your data. You keep `ax.plot`, `ax.imshow`, seaborn — anything that ends up on a matplotlib axis. `mplify()` only handles what comes after.
 
 ---
 

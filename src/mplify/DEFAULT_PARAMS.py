@@ -1,22 +1,22 @@
 """mplify's default styling parameters — EDIT THIS FILE to change mplify's
 defaults across your project.
 
-- default_mplp_params: the base style mplp() falls back to for any parameter
+- default_mplify_params: the base style mplify() falls back to for any parameter
   you don't pass explicitly — fonts, spine/tick widths, colorbar, scalebar,
   legend, etc. It's also, in effect, the 'm' / 'slide' size preset below.
 
-- SIZE_PRESETS: per-size overrides layered on top of default_mplp_params
-  when you pass size=... to mplp() (e.g. mplp(size='poster')). Aliases
+- SIZE_PRESETS: per-size overrides layered on top of default_mplify_params
+  when you pass size=... to mplify() (e.g. mplify(size='poster')). Aliases
   'paper', 'slide' and 'poster' point at 's', 'm' and 'l' respectively.
 
-mplp() re-reads this file from disk (checking its mtime) on every call, so
-edits here take effect on your very next mplp() call — no kernel restart
+mplify() re-reads this file from disk (checking its mtime) on every call, so
+edits here take effect on your very next mplify() call — no kernel restart
 and no need to have %autoreload enabled.
 """
 
 from mplify._fonts import DEFAULT_FONT_FAMILY
 
-default_mplp_params = dict(
+default_mplify_params = dict(
     # font
     font_family=DEFAULT_FONT_FAMILY,
 
@@ -96,7 +96,7 @@ default_mplp_params = dict(
 # shrink with the viewing distance/medium — font sizes and line widths — so
 # a plot keeps the same proportions, just legible wherever it ends up.
 # Data-plotting choices (colors, markers, line styles, positions, ...) stay
-# untouched. Use via mplp(size='poster'), or import SIZE_PRESETS directly.
+# untouched. Use via mplify(size='poster'), or import SIZE_PRESETS directly.
 SIZE_PRESETS = {
 
     # xs: extra small — dense multi-panel figures, small insets, thumbnails
@@ -179,7 +179,7 @@ SIZE_PRESETS = {
     ),
 }
 
-# Semantic aliases, so you can call mplp(size='paper') instead of remembering
+# Semantic aliases, so you can call mplify(size='paper') instead of remembering
 # which letter size maps to which output medium.
 SIZE_PRESETS['paper'] = SIZE_PRESETS['s']    # small text, printed close-up
 SIZE_PRESETS['slide'] = SIZE_PRESETS['m']    # mplify's original defaults

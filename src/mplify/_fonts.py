@@ -1,9 +1,9 @@
 """Font detection and matplotlib rcParam setup for mplify.
 
-For mplify's editable default styling values (default_mplp_params,
+For mplify's editable default styling values (default_mplify_params,
 SIZE_PRESETS), see DEFAULT_PARAMS.py instead — that's the file meant to be
-hand-edited, and mplp() re-reads it live so changes there take effect on
-your very next mplp() call, no kernel restart or %autoreload needed.
+hand-edited, and mplify() re-reads it live so changes there take effect on
+your very next mplify() call, no kernel restart or %autoreload needed.
 """
 
 import matplotlib as mpl

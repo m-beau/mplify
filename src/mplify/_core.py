@@ -1,7 +1,7 @@
 """
-mplp: MatPlotLib Prettifier (Make PLots Pretty)
+mplify: MatPlotLib Prettifier (make plots pretty)
 
-Core module containing the mplp() function.
+Core module containing the mplify() function.
 """
 
 import importlib
@@ -22,16 +22,16 @@ _params_mtime = _params_path.stat().st_mtime
 
 
 def _live_params():
-    """Return (default_mplp_params, SIZE_PRESETS), re-reading DEFAULT_PARAMS.py
+    """Return (default_mplify_params, SIZE_PRESETS), re-reading DEFAULT_PARAMS.py
     from disk when it changed since the last call. This is what lets edits to
-    mplify's defaults take effect on your very next mplp() call, whether or
+    mplify's defaults take effect on your very next mplify() call, whether or
     not IPython's %autoreload is enabled.
     """
     global _params_mtime
     try:
         mtime = _params_path.stat().st_mtime
     except OSError:
-        return _params.default_mplp_params, _params.SIZE_PRESETS
+        return _params.default_mplify_params, _params.SIZE_PRESETS
     if mtime != _params_mtime:
         try:
             importlib.reload(_params)
@@ -40,100 +40,100 @@ def _live_params():
             warnings.warn(
                 f"mplify: failed to reload DEFAULT_PARAMS.py ({e}); "
                 "using the previous defaults until it's fixed.")
-    return _params.default_mplp_params, _params.SIZE_PRESETS
+    return _params.default_mplify_params, _params.SIZE_PRESETS
 
 
-@_docstring_decorator(_pprint_dic(_params.default_mplp_params))
-def mplp(fig=None,
-         ax=None,
-         figsize=None,
-         axsize=None,
-         size=None,
-         adjust_ticks_from_size=True,
+@_docstring_decorator(_pprint_dic(_params.default_mplify_params))
+def mplify(fig=None,
+           ax=None,
+           figsize=None,
+           axsize=None,
+           size=None,
+           adjust_ticks_from_size=True,
 
-         xlim=None,
-         ylim=None,
-         xlabel=None,
-         ylabel=None,
-         xticks=None,
-         yticks=None,
-         xtickslabels=None,
-         ytickslabels=None,
-         reset_xticks=None,
-         reset_yticks=None,
+           xlim=None,
+           ylim=None,
+           xlabel=None,
+           ylabel=None,
+           xticks=None,
+           yticks=None,
+           xtickslabels=None,
+           ytickslabels=None,
+           reset_xticks=None,
+           reset_yticks=None,
 
-         xtickrot=None,
-         ytickrot=None,
-         xtickha=None,
-         xtickva=None,
-         ytickha=None,
-         ytickva=None,
-         xlabelpad=None,
-         ylabelpad=None,
+           xtickrot=None,
+           ytickrot=None,
+           xtickha=None,
+           xtickva=None,
+           ytickha=None,
+           ytickva=None,
+           xlabelpad=None,
+           ylabelpad=None,
 
-         axlab_w=None,
-         axlab_s=None,
-         ticklab_w=None,
-         ticklab_s=None,
-         ticks_direction=None,
+           axlab_w=None,
+           axlab_s=None,
+           ticklab_w=None,
+           ticklab_s=None,
+           ticks_direction=None,
 
-         title=None,
-         title_w=None,
-         title_s=None,
+           title=None,
+           title_w=None,
+           title_s=None,
 
-         font_family=None,
+           font_family=None,
 
-         lw=None,
-         hide_top_right=None,
-         hide_axis=None,
-         transparent_background=None,
-         tight_layout=None,
+           lw=None,
+           hide_top_right=None,
+           hide_axis=None,
+           transparent_background=None,
+           tight_layout=None,
 
-         hspace=None,
-         wspace=None,
+           hspace=None,
+           wspace=None,
 
-         show_legend=None,
-         hide_legend=None,
-         legend_loc=None,
+           show_legend=None,
+           hide_legend=None,
+           legend_loc=None,
 
-         saveFig=None,
-         saveDir=None,
-         figname=None,
-         _format=None,
+           saveFig=None,
+           saveDir=None,
+           figname=None,
+           _format=None,
 
-         colorbar=None,
-         vmin=None, vmax=None,
-         cmap=None,
-         center=None,
-         cticks=None,
-         ctickslabels=None,
-         clim=None,
-         cbar_w=None,
-         cbar_h=None,
-         clabel=None,
-         clabel_w=None,
-         clabel_s=None,
-         cticks_s=None,
-         cbar_pad=None,
+           colorbar=None,
+           vmin=None, vmax=None,
+           cmap=None,
+           center=None,
+           cticks=None,
+           ctickslabels=None,
+           clim=None,
+           cbar_w=None,
+           cbar_h=None,
+           clabel=None,
+           clabel_w=None,
+           clabel_s=None,
+           cticks_s=None,
+           cbar_pad=None,
 
-         hlines=None,
-         vlines=None,
-         lines_kwargs=None,
-         prettify=True,
-         align_x_labels=None,
-         align_y_labels=None,
+           hlines=None,
+           vlines=None,
+           lines_kwargs=None,
+           prettify=True,
+           align_x_labels=None,
+           align_y_labels=None,
 
-         xscalebar=None,
-         yscalebar=None,
-         xscalebar_unit=None,
-         yscalebar_unit=None,
-         scalebarkwargs=None,
-         ):
+           xscalebar=None,
+           yscalebar=None,
+           xscalebar_unit=None,
+           yscalebar_unit=None,
+           scalebarkwargs=None,
+           ):
     """
     Make plots pretty.
 
     Awesome utility to format matplotlib plots.
-    Simply add mplp() at the end of any plotting script, feeding it with your fav parameters!
+    Simply add mplify() at the end of any plotting script, feeding it with your fav parameters!
 
     If you set prettify=False, it will only apply the parameters you provide explicitly
     and leave the rest unchanged.
@@ -170,7 +170,7 @@ def mplp(fig=None,
         to False to always keep matplotlib's/add_colorbar's own tick placement
         regardless of size.
         Note that passing any size therefore does slightly more than rescale
-        fonts: mplp(size='m') and mplp() differ in tick placement.
+        fonts: mplify(size='m') and mplify() differ in tick placement.
 
     align_x_labels / align_y_labels: if True (default) and prettify=True, call
         fig.align_xlabels / fig.align_ylabels so shared axis labels line up
@@ -182,8 +182,8 @@ def mplp(fig=None,
         {0}
     """
 
-    default_mplp_params, SIZE_PRESETS = _live_params()
-    d = default_mplp_params
+    default_mplify_params, SIZE_PRESETS = _live_params()
+    d = default_mplify_params
     # 'xl'/'xxl' get sparser auto-ticks than the rest (see Tick values below);
     # compared by identity so aliases (e.g. size='poster' -> SIZE_PRESETS['l'])
     # resolve correctly without string-matching alias names.
@@ -196,9 +196,9 @@ def mplp(fig=None,
         size_is_sparse = preset is SIZE_PRESETS['xl'] or preset is SIZE_PRESETS['xxl']
         d = {**d, **{k: v for k, v in preset.items()
                      if k not in ('lines_kwargs', 'scalebarkwargs')}}
-        d['lines_kwargs'] = {**default_mplp_params['lines_kwargs'],
+        d['lines_kwargs'] = {**default_mplify_params['lines_kwargs'],
                              **preset.get('lines_kwargs', {})}
-        d['scalebarkwargs'] = {**default_mplp_params['scalebarkwargs'],
+        d['scalebarkwargs'] = {**default_mplify_params['scalebarkwargs'],
                                **preset.get('scalebarkwargs', {})}
 
     if fig is None:
@@ -218,7 +218,7 @@ def mplp(fig=None,
         if xlabel is None: xlabel = ax.get_xlabel()
         if ylabel is None: ylabel = ax.get_ylabel()
 
-        # Style defaults (from default_mplp_params)
+        # Style defaults (from default_mplify_params)
         if title_w is None: title_w = d['title_w']
         if title_s is None: title_s = d['title_s']
         if font_family is None: font_family = d['font_family']

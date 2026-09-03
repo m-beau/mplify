@@ -13,7 +13,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-from mplify import (mplp, get_bounded_cmap,
+from mplify import (mplify, get_bounded_cmap,
                     get_ncolors_cmap, get_color_families)
 
 OUT = __import__('pathlib').Path(__file__).parent / 'img'
@@ -34,9 +34,9 @@ y = np.sin(x) * np.exp(-x / 5)
 
 # ---------------------------------------------------------------- 1. hero
 def fig_hero():
-    """3 panels: raw matplotlib, bare mplp(), then mplp() with arguments.
+    """3 panels: raw matplotlib, bare mplify(), then mplify() with arguments.
 
-    The third panel is saved by mplp itself (saveFig/saveDir/figname/_format),
+    The third panel is saved by mplify itself (saveFig/saveDir/figname/_format),
     so this figure is also a live test of the saving path.
     """
     y2 = 0.8 * np.sin(x - 0.7) * np.exp(-x / 8)
@@ -49,20 +49,20 @@ def fig_hero():
     axes[0].legend()
     axes[0].set_title('matplotlib defaults')
 
-    mplp(ax=axes[1], title='mplp()')
+    mplify(ax=axes[1], title='mplify()')
 
-    mplp(ax=axes[2],
-         xlim=(0, 3 * np.pi), ylim=(-0.55, 0.85),
-         xticks=[0, np.pi, 2 * np.pi, 3 * np.pi],
-         xtickslabels=['0', 'π', '2π', '3π'],
-         xtickrot=45, xtickha='right',
-         yticks=[-0.4, 0, 0.4, 0.8],
-         xlabel='Phase', ylabel='Amplitude (a.u.)', title='mplp(**kwargs)',
-         hlines=[0], lines_kwargs={'lw': 1.5, 'ls': ':', 'color': 'grey'},
-         show_legend=True, legend_loc=(0.6, 0.62),
-         ticks_direction='in', lw=2, ticklab_s=15,
-         hspace=0.1, wspace=0.35,
-         saveFig=True, saveDir=str(OUT), figname='01_hero', _format='png')
+    mplify(ax=axes[2],
+           xlim=(0, 3 * np.pi), ylim=(-0.55, 0.85),
+           xticks=[0, np.pi, 2 * np.pi, 3 * np.pi],
+           xtickslabels=['0', 'π', '2π', '3π'],
+           xtickrot=45, xtickha='right',
+           yticks=[-0.4, 0, 0.4, 0.8],
+           xlabel='Phase', ylabel='Amplitude (a.u.)', title='mplify(**kwargs)',
+           hlines=[0], lines_kwargs={'lw': 1.5, 'ls': ':', 'color': 'grey'},
+           show_legend=True, legend_loc=(0.6, 0.62),
+           ticks_direction='in', lw=2, ticklab_s=15,
+           hspace=0.1, wspace=0.35,
+           saveFig=True, saveDir=str(OUT), figname='01_hero', _format='png')
     plt.close(fig)
     print(f"  wrote {OUT / '01_hero.png'}")
 
@@ -75,12 +75,12 @@ def fig_axes():
         ax.set_xlabel('Time (s)')
         ax.set_ylabel('Amplitude (a.u.)')
     axes[0].set_title('matplotlib defaults')
-    mplp(ax=axes[1],
-         xlim=(0, 8), ylim=(-0.5, 1),
-         xticks=[0, 2, 4, 6, 8], yticks=[-0.5, 0, 0.5, 1],
-         xlabel='Time (s)', ylabel='Amplitude (a.u.)',
-         title='limits + ticks, one call',
-         tight_layout=True)
+    mplify(ax=axes[1],
+           xlim=(0, 8), ylim=(-0.5, 1),
+           xticks=[0, 2, 4, 6, 8], yticks=[-0.5, 0, 0.5, 1],
+           xlabel='Time (s)', ylabel='Amplitude (a.u.)',
+           title='limits + ticks, one call',
+           tight_layout=True)
     save(fig, '02_axes')
 
 
@@ -95,11 +95,11 @@ def fig_ticklabels():
         ax.set_xticklabels(categories)
         ax.set_ylabel('Response')
     axes[0].set_title('matplotlib defaults')
-    mplp(ax=axes[1],
-         xticks=range(len(values)), xtickslabels=categories,
-         xtickrot=30, xtickha='right',
-         ylabel='Response', title='rotate + realign labels',
-         tight_layout=True)
+    mplify(ax=axes[1],
+           xticks=range(len(values)), xtickslabels=categories,
+           xtickrot=30, xtickha='right',
+           ylabel='Response', title='rotate + realign labels',
+           tight_layout=True)
     save(fig, '03_ticklabels')
 
 
@@ -114,11 +114,11 @@ def fig_lines():
     axes[0].axvline(x=np.pi, lw=1.5, ls='--', color='k')
     axes[0].axvline(x=2 * np.pi, lw=1.5, ls='--', color='k')
     axes[0].set_title('matplotlib defaults')
-    mplp(ax=axes[1],
-         hlines=[0], vlines=[np.pi, 2 * np.pi],
-         lines_kwargs={'lw': 2, 'ls': ':', 'color': 'grey'},
-         xlabel='x', ylabel='y', title='hlines / vlines',
-         tight_layout=True)
+    mplify(ax=axes[1],
+           hlines=[0], vlines=[np.pi, 2 * np.pi],
+           lines_kwargs={'lw': 2, 'ls': ':', 'color': 'grey'},
+           xlabel='x', ylabel='y', title='hlines / vlines',
+           tight_layout=True)
     save(fig, '04_lines')
 
 
@@ -132,12 +132,12 @@ def fig_colorbar():
         ax.set_ylabel('Sample')
     plt.colorbar(axes[0].images[0], ax=axes[0])
     axes[0].set_title('matplotlib defaults')
-    mplp(ax=axes[1],
-         colorbar=True, vmin=-3, vmax=3, cmap='RdBu_r',
-         clabel='Z-score', cticks=[-2, 0, 2], cbar_pad=0.02,
-         xticks=[0, 10, 20], yticks=[0, 5, 10, 15],
-         xlabel='Feature', ylabel='Sample',
-         title='colorbar that keeps the axis size')
+    mplify(ax=axes[1],
+           colorbar=True, vmin=-3, vmax=3, cmap='RdBu_r',
+           clabel='Z-score', cticks=[-2, 0, 2], cbar_pad=0.02,
+           xticks=[0, 10, 20], yticks=[0, 5, 10, 15],
+           xlabel='Feature', ylabel='Sample',
+           title='colorbar that keeps the axis size')
     save(fig, '05_colorbar')
 
 
@@ -156,11 +156,11 @@ def fig_bounded():
     # right: same range, but the colormap is re-anchored so white == 0
     axes[1].imshow(data_asym, aspect='auto', vmin=-2, vmax=5,
                    cmap=get_bounded_cmap('RdBu_r', -2, 0, 5))
-    mplp(ax=axes[1],
-         title='center=0\nwhite sits at 0',
-         colorbar=True, cmap='RdBu_r', vmin=-2, center=0, vmax=5,
-         cbar_h=0.8, cticks=[-2, 0, 2, 4],
-         xticks=[], yticks=[])
+    mplify(ax=axes[1],
+           title='center=0\nwhite sits at 0',
+           colorbar=True, cmap='RdBu_r', vmin=-2, center=0, vmax=5,
+           cbar_h=0.8, cticks=[-2, 0, 2, 4],
+           xticks=[], yticks=[])
     save(fig, '06_bounded_cmap')
 
 
@@ -183,12 +183,12 @@ def fig_scalebar():
     axes[0].set_title('matplotlib defaults')
     axes[0].set_xlabel('Time (ms)')
     axes[0].set_ylabel('Voltage (μV)')
-    mplp(ax=axes[1],
-         hide_axis=True,
-         xscalebar=5, yscalebar=200,
-         xscalebar_unit=' ms', yscalebar_unit=' μV',
-         scalebarkwargs={'loc': 'right', 'fontsize': 12, 'lw': 4},
-         title='axes → scalebars', tight_layout=True)
+    mplify(ax=axes[1],
+           hide_axis=True,
+           xscalebar=5, yscalebar=200,
+           xscalebar_unit=' ms', yscalebar_unit=' μV',
+           scalebarkwargs={'loc': 'right', 'fontsize': 12, 'lw': 4},
+           title='axes → scalebars', tight_layout=True)
     save(fig, '07_scalebar')
 
 
@@ -206,13 +206,13 @@ def fig_sizes():
     fig, axes = plt.subplots(1, 3, figsize=(17, 4.5))
     for ax, (size, axsize) in zip(axes, sizes):
         ax.scatter(xd, yd, c=c, cmap='magma', s=25, alpha=0.8)
-        mplp(ax=ax, size=size, axsize=axsize, wspace=1.0,
-             align_x_labels=False, align_y_labels=False,
-             xlabel='Feature 1', ylabel='Feature 2',
-             xticks=[20, 40, 60, 80], yticks=[0, 20, 40, 60],
-             title=f"size='{size}'",
-             colorbar=True, vmin=c.min(), vmax=c.max(), cticks=[40, 80, 120],
-             cmap='magma', clabel='F1 + F2')
+        mplify(ax=ax, size=size, axsize=axsize, wspace=1.0,
+               align_x_labels=False, align_y_labels=False,
+               xlabel='Feature 1', ylabel='Feature 2',
+               xticks=[20, 40, 60, 80], yticks=[0, 20, 40, 60],
+               title=f"size='{size}'",
+               colorbar=True, vmin=c.min(), vmax=c.max(), cticks=[40, 80, 120],
+               cmap='magma', clabel='F1 + F2')
     save(fig, '08_sizes')
 
 
@@ -232,12 +232,12 @@ def fig_everything():
     axes[0].axhline(yd.mean(), lw=1, ls='--', color='grey', zorder=-1)
     axes[0].axvline(xd.mean(), lw=1, ls='--', color='grey', zorder=-1)
     axes[0].set_title('matplotlib defaults')
-    mplp(ax=axes[1],
-         xlabel='Feature 1', ylabel='Feature 2', title='one mplp() call',
-         colorbar=True, vmin=c.min(), vmax=c.max(), cmap='magma',
-         clabel='F1 + F2',
-         hlines=[yd.mean()], vlines=[xd.mean()],
-         lines_kwargs={'lw': 1, 'ls': '--', 'color': 'grey', 'zorder': -1})
+    mplify(ax=axes[1],
+           xlabel='Feature 1', ylabel='Feature 2', title='one mplify() call',
+           colorbar=True, vmin=c.min(), vmax=c.max(), cmap='magma',
+           clabel='F1 + F2',
+           hlines=[yd.mean()], vlines=[xd.mean()],
+           lines_kwargs={'lw': 1, 'ls': '--', 'color': 'grey', 'zorder': -1})
     save(fig, '09_everything')
 
 
@@ -276,9 +276,9 @@ def fig_prettify():
         ax.set_xlabel('x')
         ax.set_ylabel('y')
     axes[0].set_title('matplotlib defaults')
-    mplp(ax=axes[1], title='prettify=True (default)')
-    mplp(ax=axes[2], prettify=False, title='prettify=False',
-         hide_top_right=True, tight_layout=True)
+    mplify(ax=axes[1], title='prettify=True (default)')
+    mplify(ax=axes[2], prettify=False, title='prettify=False',
+           hide_top_right=True, tight_layout=True)
     save(fig, '11_prettify')
 
 
@@ -317,13 +317,13 @@ def fig_families():
                         yerr=sems[i, j], capsize=3,
                         color=families[i][j], ecolor='k',
                         label=dose if i == 0 else None)
-    mplp(ax=axes[1],
-         xticks=idx, xtickslabels=genotypes,
-         ylim=(0, 5.4), yticks=[0, 1, 2, 3, 4, 5],
-         ylabel='Firing rate (Hz)',
-         title='get_color_families()',
-         show_legend=True, legend_loc=(0.62, 0.5),
-         tight_layout=True)
+    mplify(ax=axes[1],
+           xticks=idx, xtickslabels=genotypes,
+           ylim=(0, 5.4), yticks=[0, 1, 2, 3, 4, 5],
+           ylabel='Firing rate (Hz)',
+           title='get_color_families()',
+           show_legend=True, legend_loc=(0.62, 0.5),
+           tight_layout=True)
     save(fig, '12_color_families')
 
 
