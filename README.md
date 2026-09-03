@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/github/license/m-beau/mplify.svg)](LICENSE)
 [![Downloads](https://static.pepy.tech/badge/mplify)](https://pepy.tech/project/mplify)
 
-Mplify (Matplotlib prettifier) is a Python package built around a single function of the same name, `mplify()`: add one line at the end of your plotting code, and it strips the clutter out of the figure and scales its style for a paper, a slide, or a poster.
+Mplify (Matplotlib prettifier) is a Python package built around a single function, `mplify()`: add one line at the end of your plotting code, and it strips the clutter out of the figure and scales its style for a paper, a slide, or a poster.
 
 `mplify()` has been growing since 2016 — first as the plotting helpers of my PhD, then as the plotting layer of [NeuroPyxels](https://github.com/m-beau/NeuroPyxels).
 
@@ -55,20 +55,6 @@ cd mplify && uv sync
 ```
 
 Requires Python ≥ 3.10, matplotlib and numpy.
-
-> [!IMPORTANT]
-> **Upgrading from 1.x:** the core function was renamed `mplp()` → `mplify()`, and
-> `default_mplp_params` → `default_mplify_params`. The old names are gone, so update
-> your imports:
->
-> ```python
-> from mplify import mplp    # 1.x
-> from mplify import mplify  # 2.0+
-> ```
->
-> Nothing else changed — every argument keeps its name and behaviour. A project-wide
-> find-and-replace of `mplp` with `mplify` is enough.
-
 
 ## The problem
 
@@ -121,7 +107,7 @@ It does, but that solved the *writing* problem (knowing the API), not the *readi
 
 ## mplify's origin story
 
-The function grew organically since 2016, from the plotting helpers I wrote throughout my PhD, under the name `mplp()` (for 'Make PLots Pretty'). It eventually became the plotting layer of [NeuroPyxels](https://github.com/m-beau/NeuroPyxels), the Python package to analyze Neuropixels data I developed. My wife thought 'mplp' was a bad name, and it was already taken on PyPi anyway, so the package was coined `mplify` (a pun on 'amplify' and 'matplotlib prettifier') — and as of v2.0.0 the function goes by `mplify()` too, so there is only one name left to remember.
+The function grew organically since 2016, from the plotting helpers I wrote throughout my PhD, under the name `mplp()` (for 'Make PLots Pretty'). It eventually became the plotting layer of [NeuroPyxels](https://github.com/m-beau/NeuroPyxels), the Python package to analyze Neuropixels data I developed. My wife thought 'mplp' was a bad name, and it was already taken on PyPi anyway, so the package was coined `mplify` (a pun on 'amplify' and 'matplotlib prettifier') — and as of v1.1.0 the function goes by `mplify()` too, so there is only one name left to remember.
 
 So every argument in the cheat sheet below exists because it's been needed for a real-world figure: the API is derived from a decade of actual plots, so it's likely to cover things you actually need rather than all of matplotlib's features. However, if you feel like something is missing for you, don't hesitate to post an issue!
 
