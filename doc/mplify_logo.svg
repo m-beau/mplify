@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 100 100"
+   width="512"
+   height="512"
+   role="img"
+   aria-label="mplify"
+   version="1.1"
+   id="svg55"
+   sodipodi:docname="mplify_logo.svg"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:c2pa="http://c2pa.org/manifest">
+  <sodipodi:namedview
+     id="namedview55"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.72788"
+     inkscape:cx="138.03042"
+     inkscape:cy="291.10818"
+     inkscape:window-width="2560"
+     inkscape:window-height="1381"
+     inkscape:window-x="1440"
+     inkscape:window-y="31"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg55" />
+  <metadata
+     id="metadata1">
+    <c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo4ODc3YWFjOS00NjQwLTQ0YzgtOGYzOC05YzZkYjJiOWZiNGQAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaMQZo2EK0FEJ6QcGpWi96UgAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDo2Yzg1NGNlZi05Zjg2LTRiNTgtOTcwNS00ZThjOGM1NDhlYTVscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNo2kKoa2l8CUlaH4l6H3IPHQAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFgg993cm297rHOy7c8M2/1qY2HoK+NHmKc6l16c3sWimPWkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaGyts6FjLFskJeNKUaZ/IR8AAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCBXrvK5Invbg2gzUO85Us4B34k8w8LTTcL+Buxa8ajxhWRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBi1Zmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjg4NzdhYWM5LTQ2NDAtNDRjOC04ZjM4LTljNmRiMmI5ZmI0ZC9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmUyZTBlMDQ5LTJjMjktNGFkZC1iMTE5LTAzNDRlYzFkMzFmZHJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCD33dybb3usc7Ltzwzb/WpjYegr40eYpzqXXpzexaKY9aJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggt4nPRLA5GR34rWF6Fr/xyJ4U1BHrYD/t1COoUrnRQjKiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFgg6Ze+i+9FN7tcYCovx+Svr0TEdwAE1Kt+sO6bIpffdsZ0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQNB1Au6k591Midp9gpMC8L5ShD28eshoVDbAVYWdQTabTtiSc3JyTevWCqhd+8PhpJkKeGbj8DaS5SNX0NKa9/Q=</c2pa:manifest>
+  </metadata>
+  <title
+     id="title1">mplify</title>
+  <defs
+     id="defs10">
+    <linearGradient
+       id="viridis-v"
+       x1="0"
+       y1="1"
+       x2="0"
+       y2="0">
+      <stop
+         offset="0"
+         stop-color="#440154"
+         id="stop1" />
+      <stop
+         offset="0.3"
+         stop-color="#414487"
+         id="stop2" />
+      <stop
+         offset="0.5"
+         stop-color="#2a788e"
+         id="stop3" />
+      <stop
+         offset="0.7"
+         stop-color="#22a884"
+         id="stop4" />
+      <stop
+         offset="0.87"
+         stop-color="#7ad151"
+         id="stop5" />
+      <stop
+         offset="1"
+         stop-color="#fde725"
+         id="stop6" />
+    </linearGradient>
+    <linearGradient
+       id="fade"
+       x1="0"
+       y1="0"
+       x2="1"
+       y2="0">
+      <stop
+         offset="0"
+         stop-color="#9d9a92"
+         stop-opacity="0.28"
+         id="stop7" />
+      <stop
+         offset="0.42"
+         stop-color="#9d9a92"
+         stop-opacity="0.22"
+         id="stop8" />
+      <stop
+         offset="0.6"
+         stop-color="#9d9a92"
+         stop-opacity="0"
+         id="stop9" />
+      <stop
+         offset="1"
+         stop-color="#9d9a92"
+         stop-opacity="0"
+         id="stop10" />
+    </linearGradient>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath57">
+      <use
+         x="0"
+         y="0"
+         xlink:href="#g56"
+         id="use57" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath58">
+      <rect
+         style="fill:#8fbeed;stroke-width:0.1625;stroke-linecap:square"
+         id="rect58"
+         width="2.7671001"
+         height="6.1067042"
+         x="49.521553"
+         y="83.903572"
+         rx="0.41693881"
+         ry="0.45654809" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath60">
+      <rect
+         style="fill:#8fbeed;stroke-width:0.1625;stroke-linecap:square"
+         id="rect60"
+         width="2.3854313"
+         height="4.7390571"
+         x="43.542072"
+         y="84.762329"
+         rx="0.41693881"
+         ry="0.45654809" />
+    </clipPath>
+  </defs>
+  <rect
+     x="18"
+     y="14"
+     width="72"
+     height="58"
+     fill="url(#fade)"
+     id="rect10"
+     inkscape:export-filename="logo_300.png"
+     inkscape:export-xdpi="300"
+     inkscape:export-ydpi="300" />
+  <text
+     x="18"
+     y="78.199997"
+     id="text12"
+     style="font-size:4.3px;font-family:Arial, Helvetica, sans-serif;text-anchor:middle;fill:#87857e">0</text>
+  <text
+     x="27"
+     y="78.199997"
+     id="text13"
+     style="font-size:4.3px;font-family:Arial, Helvetica, sans-serif;text-anchor:middle;fill:#87857e">1</text>
+  <text
+     x="36"
+     y="78.199997"
+     id="text14"
+     style="font-size:4.3px;font-family:Arial, Helvetica, sans-serif;text-anchor:middle;fill:#87857e">2</text>
+  <text
+     x="45"
+     y="78.199997"
+     id="text15"
+     style="font-size:4.3px;font-family:Arial, Helvetica, sans-serif;text-anchor:middle;fill:#87857e">3</text>
+  <g
+     text-anchor="end"
+     id="g20"
+     style="font-size:4.3px;font-family:Arial, Helvetica, sans-serif;fill:#87857e">
+    <text
+       x="15.2"
+       y="73.5"
+       id="text17">0</text>
+    <text
+       x="15.2"
+       y="54.200001"
+       id="text18">1</text>
+    <text
+       x="15.2"
+       y="34.799999"
+       id="text19">2</text>
+    <text
+       x="15.2"
+       y="15.5"
+       id="text20">3</text>
+  </g>
+  <text
+     x="-43"
+     y="9.8000002"
+     text-anchor="middle"
+     transform="rotate(-90)"
+     id="text21"
+     style="font-size:4.3px;font-family:Arial, Helvetica, sans-serif;fill:#87857e">y</text>
+  <g
+     id="g61">
+    <g
+       fill="none"
+       stroke="#a5a29b"
+       stroke-width="0.9"
+       id="g12">
+      <path
+         d="M18 14 V72 M18 14 H54 M18 72 H54"
+         id="path10" />
+      <path
+         d="M18 72 V73.7 M27 72 V73.7 M36 72 V73.7 M45 72 V73.7"
+         id="path11" />
+      <path
+         d="M18 72 H16.3 M18 52.7 H16.3 M18 33.3 H16.3 M18 14 H16.3"
+         id="path12" />
+    </g>
+    <path
+       d="M54 72 H90"
+       fill="none"
+       stroke="#1c1d20"
+       stroke-width="1.8"
+       stroke-linecap="square"
+       id="path21" />
+  </g>
+  <g
+     fill="none"
+     stroke="#1c1d20"
+     stroke-width="1.3"
+     id="g22">
+    <path
+       d="M63 72 V76.5 M72 72 V76.5 M81 72 V76.5 M90 72 V76.5"
+       id="path22" />
+  </g>
+  <text
+     x="63"
+     y="83.148766"
+     id="text22"
+     style="font-size:7px;font-family:Arial, Helvetica, sans-serif;text-anchor:middle;fill:#1c1d20">4</text>
+  <text
+     x="72"
+     y="83.148766"
+     id="text23"
+     style="font-size:7px;font-family:Arial, Helvetica, sans-serif;text-anchor:middle;fill:#1c1d20">5</text>
+  <text
+     x="81"
+     y="83.148766"
+     id="text24"
+     style="font-size:7px;font-family:Arial, Helvetica, sans-serif;text-anchor:middle;fill:#1c1d20">6</text>
+  <text
+     x="90"
+     y="83.148766"
+     id="text25"
+     style="font-size:7px;font-family:Arial, Helvetica, sans-serif;text-anchor:middle;fill:#1c1d20">7</text>
+  <g
+     id="g60"
+     transform="translate(3.7864845,-0.78125)">
+    <text
+       x="45.983627"
+       y="88.272141"
+       id="text16"
+       style="font-size:4.3px;font-family:Arial, Helvetica, sans-serif;text-anchor:middle;fill:#87857e"
+       clip-path="url(#clipPath60)"
+       transform="translate(3.5304383,-0.03180575)">x</text>
+    <g
+       id="g57"
+       clip-path="url(#clipPath58)"
+       transform="translate(-0.06512456,-0.11093178)">
+      <g
+         inkscape:label="Clip"
+         id="g56">
+        <text
+           x="49.522865"
+           y="89.051315"
+           id="text22-3"
+           style="font-size:7px;font-family:Arial, Helvetica, sans-serif;text-anchor:middle;fill:#1c1d20">x</text>
+      </g>
+    </g>
+  </g>
+  <g
+     id="g54">
+    <circle
+       cx="19.72"
+       cy="56.45"
+       r="2.1"
+       fill="#365c8d"
+       id="circle25" />
+    <circle
+       cx="22.30"
+       cy="64.87"
+       r="2.1"
+       fill="#46327e"
+       id="circle26" />
+    <circle
+       cx="25.47"
+       cy="59.16"
+       r="2.1"
+       fill="#414487"
+       id="circle27" />
+    <circle
+       cx="26.93"
+       cy="53.15"
+       r="2.1"
+       fill="#365c8d"
+       id="circle28" />
+    <circle
+       cx="28.68"
+       cy="59.18"
+       r="2.1"
+       fill="#414487"
+       id="circle29" />
+    <circle
+       cx="31.51"
+       cy="52.21"
+       r="2.1"
+       fill="#365c8d"
+       id="circle30" />
+    <circle
+       cx="33.39"
+       cy="53.47"
+       r="2.1"
+       fill="#365c8d"
+       id="circle31" />
+    <circle
+       cx="35.25"
+       cy="51.05"
+       r="2.1"
+       fill="#2a788e"
+       id="circle32" />
+    <circle
+       cx="36.18"
+       cy="51.07"
+       r="2.1"
+       fill="#2a788e"
+       id="circle33" />
+    <circle
+       cx="40.49"
+       cy="52.63"
+       r="2.1"
+       fill="#365c8d"
+       id="circle34" />
+    <circle
+       cx="44.42"
+       cy="45.87"
+       r="2.1"
+       fill="#21918c"
+       id="circle35" />
+    <circle
+       cx="45.50"
+       cy="42.77"
+       r="2.1"
+       fill="#21918c"
+       id="circle36" />
+    <circle
+       cx="47.58"
+       cy="51.89"
+       r="2.1"
+       fill="#365c8d"
+       id="circle37" />
+    <circle
+       cx="52.23"
+       cy="46.18"
+       r="2.1"
+       fill="#2a788e"
+       id="circle38" />
+    <circle
+       cx="51.23"
+       cy="46.91"
+       r="2.1"
+       fill="#2a788e"
+       id="circle39" />
+    <circle
+       cx="55.62"
+       cy="38.97"
+       r="2.1"
+       fill="#22a884"
+       id="circle40" />
+    <circle
+       cx="57.48"
+       cy="46.81"
+       r="2.1"
+       fill="#2a788e"
+       id="circle41" />
+    <circle
+       cx="58.74"
+       cy="39.10"
+       r="2.1"
+       fill="#22a884"
+       id="circle42" />
+    <circle
+       cx="62.22"
+       cy="37.87"
+       r="2.1"
+       fill="#22a884"
+       id="circle43" />
+    <circle
+       cx="67.05"
+       cy="33.40"
+       r="2.1"
+       fill="#43bf71"
+       id="circle44" />
+    <circle
+       cx="66.76"
+       cy="38.85"
+       r="2.1"
+       fill="#22a884"
+       id="circle45" />
+    <circle
+       cx="72.24"
+       cy="30.04"
+       r="2.1"
+       fill="#43bf71"
+       id="circle46" />
+    <circle
+       cx="72.88"
+       cy="30.59"
+       r="2.1"
+       fill="#43bf71"
+       id="circle47" />
+    <circle
+       cx="74.46"
+       cy="29.94"
+       r="2.1"
+       fill="#43bf71"
+       id="circle48" />
+    <circle
+       cx="77.47"
+       cy="32.34"
+       r="2.1"
+       fill="#43bf71"
+       id="circle49" />
+    <circle
+       cx="79.54"
+       cy="29.52"
+       r="2.1"
+       fill="#43bf71"
+       id="circle50" />
+    <circle
+       cx="81.60"
+       cy="31.42"
+       r="2.1"
+       fill="#43bf71"
+       id="circle51" />
+    <circle
+       cx="83.85"
+       cy="22.35"
+       r="2.1"
+       fill="#bddf26"
+       id="circle52" />
+    <circle
+       cx="86.70"
+       cy="30.46"
+       r="2.1"
+       fill="#43bf71"
+       id="circle53" />
+    <circle
+       cx="88.35"
+       cy="15.74"
+       r="2.1"
+       fill="#fde725"
+       id="circle54" />
+  </g>
+  <rect
+     x="83.4"
+     y="44"
+     width="3.8"
+     height="22"
+     fill="url(#viridis-v)"
+     id="rect54" />
+  <g
+     fill="none"
+     stroke="#1c1d20"
+     stroke-width="1.3"
+     id="g55">
+    <path
+       d="M87.2 46.7 H89.5 M87.2 55 H89.5 M87.2 63.3 H89.5"
+       id="path54" />
+  </g>
+</svg>
