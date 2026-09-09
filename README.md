@@ -1,6 +1,4 @@
-<img src="https://raw.githubusercontent.com/m-beau/mplify/main/doc/mplify_logo.png" width="150" align="right" vspace="0">
-
-# mplify
+# mplify <img src="https://raw.githubusercontent.com/m-beau/mplify/main/doc/mplify_logo.png" width="150" align="right" vspace="50">
 
 [![PyPI](https://img.shields.io/pypi/v/mplify.svg)](https://pypi.org/project/mplify/)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://pypi.org/project/mplify/)
