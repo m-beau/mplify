@@ -9,6 +9,9 @@
    id="svg55"
    sodipodi:docname="mplify_logo.svg"
    inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
+   inkscape:export-filename="mplify_logo.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -26,7 +29,7 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="1.72788"
      inkscape:cx="138.03042"
-     inkscape:cy="291.10818"
+     inkscape:cy="207.76906"
      inkscape:window-width="2560"
      inkscape:window-height="1381"
      inkscape:window-x="1440"
@@ -137,13 +140,22 @@
     </clipPath>
   </defs>
   <rect
+     style="fill:#ffffff;stroke:none;stroke-width:0.1625;stroke-linecap:square"
+     id="rect1"
+     width="89.185333"
+     height="79.916397"
+     x="6.2169752"
+     y="9.7210894"
+     rx="4.0736971"
+     ry="4.0736971" />
+  <rect
      x="18"
      y="14"
      width="72"
      height="58"
      fill="url(#fade)"
      id="rect10"
-     inkscape:export-filename="logo_300.png"
+     inkscape:export-filename="mplify_logo.png"
      inkscape:export-xdpi="300"
      inkscape:export-ydpi="300" />
   <text
