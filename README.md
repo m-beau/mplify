@@ -38,8 +38,6 @@ mplify(xlim=(0, 3*np.pi), ylim=(-0.55, 0.85),                        # limits
   <img src="doc/img/01_hero.png" width="100%" alt="matplotlib defaults vs mplify() vs mplify() with arguments">
 </p>
 
-*(the third panel is that exact call, and `saveFig` is what wrote the PNG you are looking at — this README's hero image saves itself. See [`doc/make_figures.py`](doc/make_figures.py).)*
-
 
 ## Installation
 
