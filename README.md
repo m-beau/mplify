@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/m-beau/mplify/main/doc/logo_300.png" width="150" align="right" vspace="0">
+<img src="https://raw.githubusercontent.com/m-beau/mplify/main/doc/mplify_logo.png" width="150" align="right" vspace="0">
 
 # mplify
 
