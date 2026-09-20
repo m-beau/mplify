@@ -4,6 +4,7 @@
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://pypi.org/project/mplify/)
 [![License](https://img.shields.io/github/license/m-beau/mplify.svg)](LICENSE)
 [![Downloads](https://static.pepy.tech/badge/mplify)](https://pepy.tech/project/mplify)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22850447.svg)](https://doi.org/10.5281/zenodo.22850447)
 
 Mplify (Matplotlib prettifier) is a Python package built around a single function, `mplify()`: add one line at the end of your plotting code, and it strips the clutter out of the figure and scales its style for a paper, a slide, or a poster.
 
@@ -53,6 +54,25 @@ cd mplify && uv sync
 ```
 
 Requires Python ≥ 3.10, matplotlib and numpy.
+
+## Citation
+
+If you found mplify helpful, you can cite it with the following:
+
+> Beau, M. (2026). *mplify: a matplotlib prettifier* (v1.1.1) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.22850447
+
+```bibtex
+@software{beau_mplify,
+  author    = {Beau, Maxime},
+  title     = {mplify: a matplotlib prettifier},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.22850447},
+  url       = {https://doi.org/10.5281/zenodo.22850447}
+}
+```
+
+[`10.5281/zenodo.22850447`](https://doi.org/10.5281/zenodo.22850447) is the concept DOI: it always resolves to the latest release.
 
 ## The problem
 
