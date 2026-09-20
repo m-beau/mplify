@@ -57,7 +57,7 @@ Requires Python ≥ 3.10, matplotlib and numpy.
 
 ## Citation
 
-If you found mplify helpful, you can cite it with the following:
+If you found mplify helpful in your research, please cite it with the following Zenodo DOI:
 
 > Beau, M. (2026). *mplify: a matplotlib prettifier* (v1.1.1) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.22850447
 
